@@ -56,6 +56,11 @@ input {
   border-radius: 4px;
   font-size: 16px;
 }
+
+.action-fields {
+  display: flex;
+}
+
 label {
   width: 100%;
   display: block;
