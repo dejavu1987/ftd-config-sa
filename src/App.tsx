@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import { Action, actions, pages } from './Data';
+import ActionForm from './components/ActionForm';
+import { useState } from 'react';
 
 const mdIcoUrl =
   'https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/';
@@ -30,17 +32,32 @@ interface PageContentProps {
 }
 
 function PageContent({ pageName, actions }: PageContentProps) {
+  const [actionIsOpen, setActionIsOpen] = useState<boolean>(false);
   return (
     <section>
       <h2>{pageName}</h2>
       <div className="grid grid--action">
         {actions.map((action, index) => (
-          <div className="action icon" key={index}>
+          <div
+            className="action icon"
+            key={index}
+            onClick={() => {
+              setActionIsOpen(true);
+            }}
+          >
             <img src={`${mdIcoUrl}${action.icon}.svg`} alt={action.name} />
             <p>{action.name}</p>
           </div>
         ))}
       </div>
+
+      <ActionForm
+        isOpen={actionIsOpen}
+        onClose={() => {
+          setActionIsOpen(false);
+          console.log('closed');
+        }}
+      />
     </section>
   );
 }

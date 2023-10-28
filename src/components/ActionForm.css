@@ -1,0 +1,87 @@
+/* Styles for the backdrop */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for the modal content */
+.modal-content {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  max-width: 800px;
+  border-radius: 8px;
+  position: relative;
+  width: 75%;
+}
+
+/* Close button (a small 'x' to close the modal) */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close:hover {
+  color: #000;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* Form elements */
+section {
+  margin-bottom: 20px;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+label {
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+input[type='checkbox'] {
+  width: auto;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Blue color for the button */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Center the form on smaller screens */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+  }
+}
