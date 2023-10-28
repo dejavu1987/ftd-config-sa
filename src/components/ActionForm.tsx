@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import './ActionForm.css';
 import { ActionField } from './ActionField';
+import IconDropdown from './IconDropdown';
+import { icons } from '../Data';
 
 interface ActionFormProps {
   isOpen: boolean;
@@ -35,17 +37,11 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
         <h2>Action Configuration</h2>
         <form onSubmit={handleSubmit}>
           <section className="section">
-            {/* Section 1: Icon Selection */}
-            <select
+            <IconDropdown
+              options={icons}
               value={selectedIcon}
-              onChange={(e) => setSelectedIcon(e.target.value)}
-            >
-              {materialDesignIcons.map((icon, index) => (
-                <option key={index} value={icon}>
-                  {icon}
-                </option>
-              ))}
-            </select>
+              onChange={(newIcon) => setSelectedIcon(newIcon)}
+            />
           </section>
           <section className="section ">
             <ActionField actionId={1} />

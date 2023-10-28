@@ -1,3 +1,6 @@
+export const mdIcoUrl =
+  'https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/';
+
 export interface Page {
   name: string;
   icon: string;
@@ -63,6 +66,35 @@ export const actions: { [pageName: string]: Action[] } = {
     // Add more Photoshop actions here
   ],
 };
+
+export const icons: string[] = [
+  'volume-plus',
+  'volume-minus',
+  'skip-next',
+  'play-pause',
+  'skip-previous',
+  'volume-off',
+  'access-point',
+  'access-point-off',
+  'record-rec',
+  'stop',
+  'thumb-up',
+  'thumb-down',
+  'youtube-subscription',
+  'share',
+  'content-cut',
+  'content-copy',
+  'content-paste',
+  'undo',
+  'tab-plus',
+  'tab-remove',
+  'refresh',
+  'bookmark',
+  'layers',
+  'crop',
+  'image-filter-black-white',
+  'undo',
+];
 
 export type Subitem = {
   name: string;

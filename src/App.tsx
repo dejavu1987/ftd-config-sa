@@ -5,12 +5,9 @@ import {
   Routes,
 } from 'react-router-dom';
 import './App.css';
-import { Action, actions, pages } from './Data';
+import { Action, actions, mdIcoUrl, pages } from './Data';
 import ActionForm from './components/ActionForm';
 import { useState } from 'react';
-
-const mdIcoUrl =
-  'https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/';
 
 interface PageItemProps {
   name: string;
