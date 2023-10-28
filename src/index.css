@@ -33,6 +33,7 @@ a {
   color: black;
 }
 
+.active .icon,
 .grid--action .icon {
   background: #ace;
 }
@@ -50,6 +51,7 @@ a {
   background-color: #eee;
 }
 
-.grid--action .icon:hover {
+.grid--action .icon:hover,
+.active .icon:hover {
   background: #bdf;
 }

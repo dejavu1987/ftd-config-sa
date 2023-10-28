@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Routes,
+} from 'react-router-dom';
 import './App.css';
 import { Action, actions, pages } from './Data';
 
@@ -50,13 +55,17 @@ function App() {
 
         <section className="grid">
           {pages.map((page, index) => (
-            <Link key={index} to={`/page/${page.name}`}>
+            <NavLink
+              key={index}
+              to={`/page/${page.name}`}
+              className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+            >
               <PageItem
                 key={index}
                 name={page.name}
                 icon={`${mdIcoUrl}${page.icon}.svg`}
               />
-            </Link>
+            </NavLink>
           ))}
         </section>
         <Routes>
