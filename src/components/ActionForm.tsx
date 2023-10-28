@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './ActionForm.css';
+import { ActionField } from './ActionField';
 
 interface ActionFormProps {
   isOpen: boolean;
@@ -9,7 +10,7 @@ interface ActionFormProps {
 
 const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
   const [selectedIcon, setSelectedIcon] = useState<string>('');
-  const [action1, setAction1] = useState<string>('');
+
   const [isLatchEnabled, setIsLatchEnabled] = useState<boolean>(false);
   const [selectedLatchIcon, setSelectedLatchIcon] = useState<string>('');
 
@@ -47,31 +48,9 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
             </select>
           </section>
           <section className="section ">
-            <h3>Action 1</h3>
-            <div className="action-fields">
-              <select
-                value={action1}
-                onChange={(e) => setAction1(e.target.value)}
-              >
-                <option value="0">Do Nothing</option>
-                <option value="1">Delay</option>
-                <option value="2">Arrows and TAB</option>
-                <option value="3">Mediakey</option>
-                <option value="4">Letters</option>
-                <option value="5">Option Keys</option>
-                <option value="6">Function Keys</option>
-                <option value="7">Numbers</option>
-                <option value="8">Special Chars</option>
-                <option value="9">Combos</option>
-                <option value="10">Helpers</option>
-                <option value="11">FTD Functions</option>
-                <option value="12">Numpad</option>
-                <option value="13">User Actions</option>
-              </select>
-              <select>
-                {/* Add options related to the selected action */}
-              </select>
-            </div>
+            <ActionField actionId={1} />
+            <ActionField actionId={2} />
+            <ActionField actionId={3} />
           </section>
 
           <section className="section">

@@ -64,7 +64,18 @@ export const actions: { [pageName: string]: Action[] } = {
   ],
 };
 
-export const actionTree = [
+export type Subitem = {
+  name: string;
+  value: string;
+};
+
+export type ActionItem = {
+  name: string;
+  value: string;
+  subitems: Subitem[];
+};
+
+export const actionTree: ActionItem[] = [
   {
     name: 'Do Nothing',
     value: '0',

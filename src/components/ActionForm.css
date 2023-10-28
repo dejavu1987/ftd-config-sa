@@ -59,6 +59,7 @@ input {
 
 .action-fields {
   display: flex;
+  gap: 1rem;
 }
 
 label {
