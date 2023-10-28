@@ -69,10 +69,18 @@ a {
   width: 64px;
 }
 
-.icon-img.sm {
+.icon-img.sm,
+.icon.sm img {
   width: 16px;
+  height: 16px;
 }
 
+.icon.sm {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
 /* Styles for the background overlay */
 .popup-background {
   position: fixed;

@@ -11,7 +11,7 @@ interface ActionFormProps {
 }
 
 const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
-  const [selectedIcon, setSelectedIcon] = useState<string>('');
+  const [selectedIcon, setSelectedIcon] = useState<string>('play');
 
   const [isLatchEnabled, setIsLatchEnabled] = useState<boolean>(false);
   const [selectedLatchIcon, setSelectedLatchIcon] = useState<string>('');
