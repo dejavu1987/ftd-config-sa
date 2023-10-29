@@ -1,0 +1,72 @@
+.general-settings {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.title {
+  font-family: Arial, Helvetica, Sans-Serif;
+  color: #000088;
+}
+
+.form input[type='color'],
+.form select {
+  width: 100px;
+  height: 30px;
+  padding: 1px;
+  border-radius: 0.3rem;
+}
+
+/* Base styles for the form */
+.form {
+  font-family: Arial, Helvetica, Sans-Serif;
+  color: #000088;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+/* Style for form fields and labels */
+.form-field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Zebra effect for alternative form fields */
+.form-field:nth-child(odd) {
+  background: #f4f4f4; /* Light gray background for odd rows */
+}
+
+/* Label styles */
+.form-field label {
+  width: 45%; /* Adjust the width as needed */
+  text-align: right;
+  padding: 5px;
+}
+
+/* Field (input/select) styles */
+.form-field input[type='color'],
+.form-field select {
+  width: 45%; /* Adjust the width as needed */
+  height: 30px;
+  padding: 1px;
+  border-radius: 0.3rem;
+}
+
+/* Additional styling for buttons */
+.form-field button {
+  margin-left: 45%; /* Move the button to the right side */
+  cursor: pointer;
+  background: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 10px;
+  border-radius: 0.3rem;
+}
+
+/* Hover effect for buttons */
+.form-field button:hover {
+  background: #0056b3; /* Darker background color on hover */
+}

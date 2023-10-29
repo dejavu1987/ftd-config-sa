@@ -10,6 +10,7 @@ import { Action, actions, mdIcoUrl, pages } from './Data';
 import ActionForm from './components/ActionForm';
 import { useState } from 'react';
 import classNames from 'classnames';
+import GeneralSettingsForm from './components/GeneralSettings';
 
 interface PageItemProps {
   name: string;
@@ -101,7 +102,7 @@ function App() {
             <PageItem name="Edit Homepage" icon={`${mdIcoUrl}home.svg`} />
           </NavLink>
           <NavLink
-            to={`/page/wifi`}
+            to={`/wifi`}
             className={({ isActive }) => (isActive ? 'active' : 'inactive')}
           >
             <PageItem
@@ -111,7 +112,7 @@ function App() {
             />
           </NavLink>
           <NavLink
-            to={`/page/settings`}
+            to={`/settings`}
             className={({ isActive }) => (isActive ? 'active' : 'inactive')}
           >
             <PageItem
@@ -121,7 +122,7 @@ function App() {
             />
           </NavLink>
           <NavLink
-            to={`/page/icons`}
+            to={`/icons`}
             className={({ isActive }) => (isActive ? 'active' : 'inactive')}
           >
             <PageItem
@@ -154,6 +155,15 @@ function App() {
                   ))}
                   <PageItem name="Save" icon={`${mdIcoUrl}floppy.svg`} />
                 </div>
+              </section>
+            }
+          />
+          <Route
+            path={`/settings`}
+            element={
+              <section>
+                <h2>General Settings</h2>
+                <GeneralSettingsForm />
               </section>
             }
           />
