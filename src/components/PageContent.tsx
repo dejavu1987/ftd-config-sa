@@ -9,6 +9,7 @@ interface PageContentProps {
 
 export const PageContent: FC<PageContentProps> = ({ actions }) => {
   const { pageName } = useParams();
+  const [selectedAction, setSelectedAction] = useState<Action | null>(null);
 
   const [actionIsOpen, setActionIsOpen] = useState<boolean>(false);
   return (
@@ -21,6 +22,7 @@ export const PageContent: FC<PageContentProps> = ({ actions }) => {
             key={index}
             onClick={() => {
               setActionIsOpen(true);
+              setSelectedAction(action);
             }}
           >
             <img src={`${mdIcoUrl}${action.icon}.svg`} alt={action.name} />
@@ -38,13 +40,16 @@ export const PageContent: FC<PageContentProps> = ({ actions }) => {
         </div>
       </div>
 
-      <ActionForm
-        isOpen={actionIsOpen}
-        onClose={() => {
-          setActionIsOpen(false);
-          console.log('closed');
-        }}
-      />
+      {selectedAction && (
+        <ActionForm
+          isOpen={actionIsOpen}
+          selectedAction={selectedAction}
+          onClose={() => {
+            setActionIsOpen(false);
+            console.log('closed');
+          }}
+        />
+      )}
     </section>
   );
 };

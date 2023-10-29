@@ -34,6 +34,8 @@ const IconDropdown: FC<IconDropdownProps> = ({ options, value, onChange }) => {
       {isOpen && (
         <div className="popup-background">
           <div className="popup-content">
+            <h2>Select an icon</h2>
+
             <div className="icon-list">
               {options.map((icon, index) => (
                 <div

@@ -3,15 +3,26 @@ import React, { useEffect, useState } from 'react';
 import './ActionForm.css';
 import { ActionField } from './ActionField';
 import IconDropdown from './IconDropdown';
-import { icons as defaultIcons } from '../Data';
+import { Action, ActionTuple, icons as defaultIcons } from '../Data';
 
 interface ActionFormProps {
   isOpen: boolean;
   onClose: () => void;
+  selectedAction: Action;
 }
 
-const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
-  const [selectedIcon, setSelectedIcon] = useState<string>('play');
+const ActionForm: React.FC<ActionFormProps> = ({
+  isOpen,
+  onClose,
+  selectedAction,
+}) => {
+  const [selectedIcon, setSelectedIcon] = useState<string>(selectedAction.icon);
+  const [selectedLatchIcon, setSelectedLatchIcon] = useState<string>(
+    selectedAction.icon
+  );
+  const [selectedActions, setSelectedActions] = useState<ActionTuple[]>(
+    selectedAction.actions
+  );
 
   const [isLatchEnabled, setIsLatchEnabled] = useState<boolean>(false);
 
@@ -20,6 +31,8 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
   // Load icons from local storage on component mount
   useEffect(() => {
     const savedIcons = localStorage.getItem('ftd.icons');
+
+    console.log(selectedAction);
 
     if (savedIcons) {
       setIcons(JSON.parse(savedIcons));
@@ -31,7 +44,6 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     onClose();
   };
 
@@ -43,7 +55,8 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
         <span className="close" onClick={onClose}>
           &times;
         </span>
-        <h2>Action Configuration</h2>
+        <h2>Action Configuration:</h2>
+        <h3>{selectedAction.name}</h3>
         <form onSubmit={handleSubmit}>
           <section className="section">
             <IconDropdown
@@ -53,9 +66,27 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
             />
           </section>
           <section className="section ">
-            <ActionField actionId={1} />
-            <ActionField actionId={2} />
-            <ActionField actionId={3} />
+            {selectedActions.map((action, index) => (
+              <ActionField
+                actionId={index}
+                actionTuple={action}
+                onChange={(tuple) => {
+                  selectedActions[index] = tuple;
+                  setSelectedActions(selectedActions);
+                }}
+              />
+            ))}
+            {selectedActions.length < 3 && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (selectedActions.length < 3)
+                    setSelectedActions([...selectedActions, ['0', '0']]);
+                }}
+              >
+                Add Action
+              </button>
+            )}
           </section>
 
           <section className="section">
@@ -65,15 +96,19 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
                 type="checkbox"
                 checked={isLatchEnabled}
                 onChange={(e) => setIsLatchEnabled(e.target.checked)}
-              />{' '}
-              Latch{' '}
+              />
+              Latch
             </label>
-            <label htmlFor="">Latch icon</label>
-            <IconDropdown
-              options={icons}
-              value={selectedIcon}
-              onChange={(newIcon) => setSelectedIcon(newIcon)}
-            />
+            {isLatchEnabled && (
+              <>
+                <label htmlFor="">Latch icon</label>
+                <IconDropdown
+                  options={icons}
+                  value={selectedLatchIcon}
+                  onChange={(newIcon) => setSelectedLatchIcon(newIcon)}
+                />
+              </>
+            )}
           </section>
           <button type="submit">Save</button>
         </form>

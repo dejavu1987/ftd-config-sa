@@ -1,24 +1,35 @@
-import { FC, useState } from 'react';
-import { actionTree, Subitem } from '../Data';
+import { FC, useEffect, useState } from 'react';
+import { ActionTuple, Subitem, getOptionsForAction } from '../Data';
+
+import './ActionField.css';
 
 // react function component
-export const ActionField: FC<{ actionId: number }> = ({ actionId }) => {
-  const [action, setAction] = useState<string>('');
+export const ActionField: FC<{
+  actionId: number;
+  actionTuple: ActionTuple;
+  onChange: (actionTuple: ActionTuple) => void;
+}> = ({ actionId, actionTuple, onChange }) => {
+  const [action, setAction] = useState<string>(actionTuple[0]);
   const [valOptions, setvalOptions] = useState<Subitem[]>([]);
-  const [actionVal, setActionVal] = useState<string>('');
+  const [actionVal, setActionVal] = useState<string>(actionTuple[1]);
+
+  useEffect(() => {
+    const options = getOptionsForAction(actionTuple[0]);
+    setvalOptions(options);
+  }, [actionTuple]);
   return (
     <>
-      <h3>Action {actionId}</h3>
-      <div className="action-fields">
+      <div className="action-field">
+        <h3>
+          <label htmlFor={`action-select-${actionId}`}>Action {actionId}</label>
+        </h3>
         <select
           value={action}
           onChange={(e) => {
             setAction(e.target.value);
-            const options = actionTree.filter(
-              ({ value }) => value === e.target.value
-            )[0].subitems;
-
+            const options = getOptionsForAction(e.target.value);
             setvalOptions(options);
+            onChange([e.target.value, actionVal]);
           }}
         >
           <option value="0">Do Nothing</option>
@@ -40,6 +51,7 @@ export const ActionField: FC<{ actionId: number }> = ({ actionId }) => {
           value={actionVal}
           onChange={(e) => {
             setActionVal(e.target.value);
+            onChange([action, e.target.value]);
           }}
         >
           {valOptions.map(({ value, name }) => (

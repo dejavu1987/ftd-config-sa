@@ -6,9 +6,11 @@ export interface Page {
   icon: string;
 }
 
+export type ActionTuple = [string, string];
 export interface Action {
   name: string;
   icon: string;
+  actions: ActionTuple[];
 }
 
 export const pages: Page[] = [
@@ -21,38 +23,185 @@ export const pages: Page[] = [
 
 export const actions: Action[][] = [
   [
-    { name: 'Volume Up', icon: `volume-plus` },
-    { name: 'Volume Down', icon: `volume-minus` },
-    { name: 'Next', icon: `skip-next` },
-    { name: 'Play/Pause', icon: `play-pause` },
-    { name: 'Previous', icon: `skip-previous` },
+    {
+      name: 'Volume Up',
+      icon: `volume-plus`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Volume Down',
+      icon: `volume-minus`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Next',
+      icon: `skip-next`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Play/Pause',
+      icon: `play-pause`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Previous',
+      icon: `skip-previous`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
   ],
   [
-    { name: 'Start Streaming', icon: `access-point` },
-    { name: 'Stop Streaming', icon: `access-point-off` },
-    { name: 'Start Recording', icon: `record-rec` },
-    { name: 'Stop Recording', icon: `stop` },
+    {
+      name: 'Start Streaming',
+      icon: `access-point`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Stop Streaming',
+      icon: `access-point-off`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Start Recording',
+      icon: `record-rec`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Stop Recording',
+      icon: `stop`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
     // Add more OBS actions here
   ],
   [
-    { name: 'Like', icon: `thumb-up` },
-    { name: 'Dislike', icon: `thumb-down` },
-    { name: 'Subscribe', icon: `youtube-subscription` },
-    { name: 'Share', icon: `share` },
+    {
+      name: 'Like',
+      icon: `thumb-up`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Dislike',
+      icon: `thumb-down`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Subscribe',
+      icon: `youtube-subscription`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Share',
+      icon: `share`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
     // Add more Youtube actions here
   ],
   [
-    { name: 'Cut', icon: `content-cut` },
-    { name: 'Copy', icon: `content-copy` },
-    { name: 'Paste', icon: `content-paste` },
-    { name: 'Undo', icon: `undo` },
+    {
+      name: 'Cut',
+      icon: `content-cut`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Copy',
+      icon: `content-copy`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Paste',
+      icon: `content-paste`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Undo',
+      icon: `undo`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
     // Add more Premiere actions here
   ],
   [
-    { name: 'Open New Tab', icon: `tab-plus` },
-    { name: 'Close Tab', icon: `tab-remove` },
-    { name: 'Refresh Page', icon: `refresh` },
-    { name: 'Bookmark Page', icon: `bookmark` },
+    {
+      name: 'Open New Tab',
+      icon: `tab-plus`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Close Tab',
+      icon: `tab-remove`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Refresh Page',
+      icon: `refresh`,
+      actions: [
+        ['5', '1'],
+        ['4', 'r'],
+      ],
+    },
+    {
+      name: 'Bookmark Page',
+      icon: `bookmark`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
     // Add more Chrome actions here
   ],
 ];
@@ -839,3 +988,7 @@ export const actionTree: ActionItem[] = [
     ],
   },
 ];
+
+export const getOptionsForAction = (act: string) => {
+  return actionTree.filter(({ value }) => value === act)[0].subitems;
+};

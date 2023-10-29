@@ -22,6 +22,12 @@ export const ManageIcons: FC = () => {
     if (icons.length) localStorage.setItem('ftd.icons', JSON.stringify(icons));
   }, [icons]);
 
+  const handleIconRemove = (index: number) => {
+    const updatedIcons = [...icons];
+    updatedIcons.splice(index, 1);
+    setIcons(updatedIcons);
+  };
+
   return (
     <div className="settings-form">
       <AddIconForm
@@ -37,6 +43,22 @@ export const ManageIcons: FC = () => {
               src={`${mdIcoUrl}${icon}.svg`}
               alt={icon}
             />
+            <button
+              className="remove-icon"
+              onClick={() => {
+                console.log('Remove icon');
+                console.log(index);
+                console.log(icon);
+
+                handleIconRemove(index);
+              }}
+            >
+              <img
+                className="icon-img sm"
+                src={`${mdIcoUrl}delete-circle-outline.svg`} // Replace with your bin icon image
+                alt={`Remove ${icon}`}
+              />
+            </button>
           </div>
         ))}
       </div>
