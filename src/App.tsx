@@ -15,6 +15,7 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import GeneralSettingsForm from './components/GeneralSettings';
 import WiFiSettingsForm from './components/WifiSettings';
+import { ManageIcons } from './components/ManageIcons';
 
 interface PageItemProps {
   name: string;
@@ -177,6 +178,15 @@ function App() {
               <section>
                 <h2>Wifi Settings</h2>
                 <WiFiSettingsForm />
+              </section>
+            }
+          />
+          <Route
+            path={`/icons`}
+            element={
+              <section>
+                <h2>Manage Icons</h2>
+                <ManageIcons />
               </section>
             }
           />

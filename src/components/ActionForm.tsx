@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './ActionForm.css';
 import { ActionField } from './ActionField';
 import IconDropdown from './IconDropdown';
-import { icons } from '../Data';
+import { icons as defaultIcons } from '../Data';
 
 interface ActionFormProps {
   isOpen: boolean;
@@ -14,11 +14,20 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
   const [selectedIcon, setSelectedIcon] = useState<string>('play');
 
   const [isLatchEnabled, setIsLatchEnabled] = useState<boolean>(false);
-  const [selectedLatchIcon, setSelectedLatchIcon] = useState<string>('');
 
-  // You can define an array of material design icons for the selection in Section 1.
-  const materialDesignIcons: string[] = ['icon1', 'icon2'];
+  const [icons, setIcons] = useState<string[]>([]);
 
+  // Load icons from local storage on component mount
+  useEffect(() => {
+    const savedIcons = localStorage.getItem('ftd.icons');
+
+    if (savedIcons) {
+      setIcons(JSON.parse(savedIcons));
+    } else {
+      // If no icons found in local storage, use defaultIcons from Data.ts
+      setIcons(defaultIcons);
+    }
+  }, []);
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,16 +68,12 @@ const ActionForm: React.FC<ActionFormProps> = ({ isOpen, onClose }) => {
               />{' '}
               Latch{' '}
             </label>
-            <select
-              value={selectedLatchIcon}
-              onChange={(e) => setSelectedLatchIcon(e.target.value)}
-            >
-              {materialDesignIcons.map((icon, index) => (
-                <option key={index} value={icon}>
-                  {icon}
-                </option>
-              ))}
-            </select>
+            <label htmlFor="">Latch icon</label>
+            <IconDropdown
+              options={icons}
+              value={selectedIcon}
+              onChange={(newIcon) => setSelectedIcon(newIcon)}
+            />
           </section>
           <button type="submit">Save</button>
         </form>
