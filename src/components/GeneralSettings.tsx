@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { FormEventHandler } from 'react';
 import './GeneralSettings.css';
+import { ftdSaveConfigUrl } from '../Data';
 
 const GeneralSettingsForm: React.FC = () => {
+  const handleSubmit: FormEventHandler = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    try {
+      await fetch(ftdSaveConfigUrl, {
+        method: 'POST',
+        body: formData,
+      });
+    } catch (e) {
+      console.log('err', e);
+      alert(
+        'Error saving settings! Make sure your FTD is in config mode and connected to your WiFi'
+      );
+    }
+  };
   return (
     <div className="settings-form">
       <div className="title">
         <h3>General Settings</h3>
       </div>
 
-      <form method="post" id="generalconfig" action="/saveconfig">
+      <form method="post" id="generalconfig" onSubmit={handleSubmit}>
         <div className="title">
           <h2>Colors</h2>
         </div>

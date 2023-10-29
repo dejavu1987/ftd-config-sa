@@ -1,6 +1,8 @@
 export const mdIcoUrl =
   'https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/';
 
+export const ftdUrl = 'http://freetouchdeck.local';
+export const ftdSaveConfigUrl = `${ftdUrl}/saveconfig`;
 export interface Page {
   name: string;
   icon: string;

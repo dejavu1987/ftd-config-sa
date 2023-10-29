@@ -1,10 +1,16 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Action, actions as defaultActions, mdIcoUrl } from '../Data';
+import {
+  Action,
+  actions as defaultActions,
+  ftdSaveConfigUrl,
+  mdIcoUrl,
+} from '../Data';
 import ActionForm from './ActionForm';
 
 export const PageContent: FC = () => {
-  const { pageName, pageIndex } = useParams();
+  const { pageName, pageIndex: pageIdx } = useParams();
+  const pageIndex = pageIdx ? parseInt(pageIdx) : null;
   const [selectedAction, setSelectedAction] = useState<Action | null>(null);
   const [selectedActionIndex, setSelectedActionIndex] = useState<number | null>(
     null
@@ -30,7 +36,7 @@ export const PageContent: FC = () => {
     <section>
       <h2>{pageName}</h2>
       <div className="grid grid--action">
-        {actions[parseInt(pageIndex)].map((action, index) => (
+        {actions[pageIndex].map((action, index) => (
           <div
             className="action icon"
             key={index}
@@ -46,8 +52,15 @@ export const PageContent: FC = () => {
         ))}
         <div
           className="action icon"
-          onClick={() => {
+          onClick={async () => {
             console.log('Save');
+            const formData = new FormData();
+            formData.append('save', `menu${pageIndex + 1}`);
+            formData.append('actions', JSON.stringify(actions[pageIndex]));
+            await fetch(ftdSaveConfigUrl, {
+              method: 'POST',
+              body: formData,
+            });
           }}
         >
           <img src={`${mdIcoUrl}floppy.svg`} alt="Save" />
@@ -71,8 +84,7 @@ export const PageContent: FC = () => {
                 console.log(selectedActionIndex);
                 console.log(formState);
                 const newActions = [...actions];
-                newActions[parseInt(pageIndex)][selectedActionIndex] =
-                  formState;
+                newActions[pageIndex][selectedActionIndex] = formState;
                 setActions(newActions);
                 localStorage.setItem('ftd.actions', JSON.stringify(newActions));
               }
