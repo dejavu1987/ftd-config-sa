@@ -3,80 +3,19 @@ import {
   Route,
   NavLink,
   Routes,
-  useParams,
 } from 'react-router-dom';
 
-import './App.css';
-import './components/Forms.css';
+import { actions, mdIcoUrl, pages } from './Data';
 
-import { Action, actions, mdIcoUrl, pages } from './Data';
-import ActionForm from './components/ActionForm';
-import { useState } from 'react';
-import classNames from 'classnames';
 import GeneralSettingsForm from './components/GeneralSettings';
 import WiFiSettingsForm from './components/WifiSettings';
 import { ManageIcons } from './components/ManageIcons';
+import { Home } from './components/Home';
 
-interface PageItemProps {
-  name: string;
-  icon: string;
-  className?: string;
-}
-
-function PageItem({ name, icon, className }: PageItemProps) {
-  return (
-    <div className={classNames('icon', className)}>
-      <img src={icon} alt={name} />
-      <p>{name}</p>
-    </div>
-  );
-}
-
-interface PageContentProps {
-  actions: Action[];
-}
-
-function PageContent({ actions }: PageContentProps) {
-  const { pageName } = useParams();
-
-  const [actionIsOpen, setActionIsOpen] = useState<boolean>(false);
-  return (
-    <section>
-      <h2>{pageName}</h2>
-      <div className="grid grid--action">
-        {actions.map((action, index) => (
-          <div
-            className="action icon"
-            key={index}
-            onClick={() => {
-              setActionIsOpen(true);
-            }}
-          >
-            <img src={`${mdIcoUrl}${action.icon}.svg`} alt={action.name} />
-            <p>{action.name}</p>
-          </div>
-        ))}
-        <div
-          className="action icon"
-          onClick={() => {
-            setActionIsOpen(true);
-          }}
-        >
-          <img src={`${mdIcoUrl}floppy.svg`} alt="Save" />
-          <p>Save</p>
-        </div>
-      </div>
-
-      <ActionForm
-        isOpen={actionIsOpen}
-        onClose={() => {
-          setActionIsOpen(false);
-          console.log('closed');
-        }}
-      />
-    </section>
-  );
-}
+import './App.css';
+import './components/Forms.css';
+import { PageItem } from './components/PageItem';
+import { PageContent } from './components/PageContent';
 
 function App() {
   return (
@@ -150,16 +89,7 @@ function App() {
             element={
               <section>
                 <h2>Home</h2>
-                <div className="grid grid--action">
-                  {pages.map((page, index) => (
-                    <PageItem
-                      key={index}
-                      name={page.name}
-                      icon={`${mdIcoUrl}${page.icon}.svg`}
-                    />
-                  ))}
-                  <PageItem name="Save" icon={`${mdIcoUrl}floppy.svg`} />
-                </div>
+                <Home />
               </section>
             }
           />
