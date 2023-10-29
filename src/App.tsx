@@ -5,7 +5,7 @@ import {
   Routes,
 } from 'react-router-dom';
 
-import { actions, mdIcoUrl, pages } from './Data';
+import { mdIcoUrl, pages } from './Data';
 
 import GeneralSettingsForm from './components/GeneralSettings';
 import WiFiSettingsForm from './components/WifiSettings';
@@ -77,13 +77,10 @@ function App() {
           </NavLink>
         </section>
         <Routes>
-          {actions.map((page, index) => (
-            <Route
-              key={index}
-              path={`/page/${index}/:pageName`}
-              element={<PageContent actions={page} />}
-            />
-          ))}
+          <Route
+            path={`/page/:pageIndex/:pageName`}
+            element={<PageContent />}
+          />
           <Route
             path={`/page/home`}
             element={

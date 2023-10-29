@@ -5,7 +5,7 @@ import './IconDropdown.css';
 
 type IconDropdownProps = {
   options: string[];
-  value: string;
+  value?: string;
   onChange: (value: string) => void;
 };
 
@@ -26,8 +26,8 @@ const IconDropdown: FC<IconDropdownProps> = ({ options, value, onChange }) => {
       <div className="selected-icon" onClick={toggleDropdown}>
         <img
           className="icon-img lg"
-          src={`${mdIcoUrl}${value}.svg`}
-          alt={value}
+          src={`${mdIcoUrl}${value || 'border-none-variant'}.svg`}
+          alt={value || 'Select an icon'}
         />
       </div>
 

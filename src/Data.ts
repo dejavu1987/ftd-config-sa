@@ -11,6 +11,8 @@ export interface Action {
   name: string;
   icon: string;
   actions: ActionTuple[];
+  latch?: boolean;
+  latchIcon?: string;
 }
 
 export const pages: Page[] = [
@@ -233,6 +235,7 @@ export const icons: string[] = [
   'crop',
   'image-filter-black-white',
   'undo',
+  'border-none-variant',
 ];
 
 export type Subitem = {

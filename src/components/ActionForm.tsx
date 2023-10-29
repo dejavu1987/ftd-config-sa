@@ -7,32 +7,26 @@ import { Action, ActionTuple, icons as defaultIcons } from '../Data';
 
 interface ActionFormProps {
   isOpen: boolean;
-  onClose: () => void;
-  selectedAction: Action;
+  onClose: (formState: Action | null) => void;
+  inputAction: Action;
 }
 
 const ActionForm: React.FC<ActionFormProps> = ({
   isOpen,
   onClose,
-  selectedAction,
+  inputAction,
 }) => {
-  const [selectedIcon, setSelectedIcon] = useState<string>(selectedAction.icon);
-  const [selectedLatchIcon, setSelectedLatchIcon] = useState<string>(
-    selectedAction.icon
-  );
-  const [selectedActions, setSelectedActions] = useState<ActionTuple[]>(
-    selectedAction.actions
-  );
-
-  const [isLatchEnabled, setIsLatchEnabled] = useState<boolean>(false);
-
+  const [icon, setIcon] = useState<string>(inputAction.icon);
   const [icons, setIcons] = useState<string[]>([]);
+  const [latchIcon, setLatchIcon] = useState<string | undefined>(
+    inputAction.icon
+  );
+  const [actions, setactions] = useState<ActionTuple[]>(inputAction.actions);
+  const [latch, setLatch] = useState<boolean>(!!inputAction.latch);
 
   // Load icons from local storage on component mount
   useEffect(() => {
     const savedIcons = localStorage.getItem('ftd.icons');
-
-    console.log(selectedAction);
 
     if (savedIcons) {
       setIcons(JSON.parse(savedIcons));
@@ -40,11 +34,22 @@ const ActionForm: React.FC<ActionFormProps> = ({
       // If no icons found in local storage, use defaultIcons from Data.ts
       setIcons(defaultIcons);
     }
-  }, []);
+
+    setactions(inputAction.actions);
+    setIcon(inputAction.icon);
+    setLatch(!!inputAction.latch);
+    setLatchIcon(inputAction.latchIcon);
+  }, [inputAction]);
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onClose();
+    onClose({
+      name: inputAction.name,
+      icon,
+      actions,
+      latch,
+      latchIcon,
+    });
   };
 
   if (!isOpen) return null;
@@ -52,36 +57,35 @@ const ActionForm: React.FC<ActionFormProps> = ({
   return (
     <div className="modal">
       <div className="modal-content">
-        <span className="close" onClick={onClose}>
+        <span className="close" onClick={() => onClose(null)}>
           &times;
         </span>
         <h2>Action Configuration:</h2>
-        <h3>{selectedAction.name}</h3>
+        <h3>{inputAction.name}</h3>
         <form onSubmit={handleSubmit}>
           <section className="section">
             <IconDropdown
               options={icons}
-              value={selectedIcon}
-              onChange={(newIcon) => setSelectedIcon(newIcon)}
+              value={icon}
+              onChange={(newIcon) => setIcon(newIcon)}
             />
           </section>
           <section className="section ">
-            {selectedActions.map((action, index) => (
+            {actions.map((action, index) => (
               <ActionField
                 actionId={index}
                 actionTuple={action}
                 onChange={(tuple) => {
-                  selectedActions[index] = tuple;
-                  setSelectedActions(selectedActions);
+                  actions[index] = tuple;
+                  setactions(actions);
                 }}
               />
             ))}
-            {selectedActions.length < 3 && (
+            {actions.length < 3 && (
               <button
                 type="button"
                 onClick={() => {
-                  if (selectedActions.length < 3)
-                    setSelectedActions([...selectedActions, ['0', '0']]);
+                  if (actions.length < 3) setactions([...actions, ['0', '0']]);
                 }}
               >
                 Add Action
@@ -94,18 +98,18 @@ const ActionForm: React.FC<ActionFormProps> = ({
             <label>
               <input
                 type="checkbox"
-                checked={isLatchEnabled}
-                onChange={(e) => setIsLatchEnabled(e.target.checked)}
+                checked={latch}
+                onChange={(e) => setLatch(e.target.checked)}
               />
               Latch
             </label>
-            {isLatchEnabled && (
+            {latch && (
               <>
                 <label htmlFor="">Latch icon</label>
                 <IconDropdown
                   options={icons}
-                  value={selectedLatchIcon}
-                  onChange={(newIcon) => setSelectedLatchIcon(newIcon)}
+                  value={latchIcon}
+                  onChange={(newIcon) => setLatchIcon(newIcon)}
                 />
               </>
             )}

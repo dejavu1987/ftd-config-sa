@@ -1,28 +1,28 @@
 import { FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Action, mdIcoUrl } from '../Data';
+import { Action, actions, mdIcoUrl } from '../Data';
 import ActionForm from './ActionForm';
 
-interface PageContentProps {
-  actions: Action[];
-}
-
-export const PageContent: FC<PageContentProps> = ({ actions }) => {
-  const { pageName } = useParams();
+export const PageContent: FC = () => {
+  const { pageName, pageIndex } = useParams();
   const [selectedAction, setSelectedAction] = useState<Action | null>(null);
-
+  const [selectedActionIndex, setSelectedActionIndex] = useState<number | null>(
+    null
+  );
   const [actionIsOpen, setActionIsOpen] = useState<boolean>(false);
+  if (!pageIndex) return;
   return (
     <section>
       <h2>{pageName}</h2>
       <div className="grid grid--action">
-        {actions.map((action, index) => (
+        {actions[parseInt(pageIndex)].map((action, index) => (
           <div
             className="action icon"
             key={index}
             onClick={() => {
               setActionIsOpen(true);
               setSelectedAction(action);
+              setSelectedActionIndex(index);
             }}
           >
             <img src={`${mdIcoUrl}${action.icon}.svg`} alt={action.name} />
@@ -43,10 +43,16 @@ export const PageContent: FC<PageContentProps> = ({ actions }) => {
       {selectedAction && (
         <ActionForm
           isOpen={actionIsOpen}
-          selectedAction={selectedAction}
-          onClose={() => {
+          inputAction={selectedAction}
+          onClose={(formState) => {
             setActionIsOpen(false);
             console.log('closed');
+            if (formState) {
+              console.log('pageIndex');
+              console.log(pageIndex);
+              console.log(selectedActionIndex);
+              console.log(formState);
+            }
           }}
         />
       )}
