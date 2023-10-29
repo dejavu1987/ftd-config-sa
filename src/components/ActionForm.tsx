@@ -21,11 +21,14 @@ const ActionForm: React.FC<ActionFormProps> = ({
   const [latchIcon, setLatchIcon] = useState<string | undefined>(
     inputAction.icon
   );
-  const [actions, setactions] = useState<ActionTuple[]>(inputAction.actions);
+  const [actions, setActions] = useState<ActionTuple[]>(inputAction.actions);
   const [latch, setLatch] = useState<boolean>(!!inputAction.latch);
 
   // Load icons from local storage on component mount
   useEffect(() => {
+    console.log('inputAction');
+    console.log(inputAction);
+
     const savedIcons = localStorage.getItem('ftd.icons');
 
     if (savedIcons) {
@@ -35,7 +38,7 @@ const ActionForm: React.FC<ActionFormProps> = ({
       setIcons(defaultIcons);
     }
 
-    setactions(inputAction.actions);
+    setActions(inputAction.actions);
     setIcon(inputAction.icon);
     setLatch(!!inputAction.latch);
     setLatchIcon(inputAction.latchIcon);
@@ -73,11 +76,12 @@ const ActionForm: React.FC<ActionFormProps> = ({
           <section className="section ">
             {actions.map((action, index) => (
               <ActionField
+                key={index}
                 actionId={index}
                 actionTuple={action}
                 onChange={(tuple) => {
                   actions[index] = tuple;
-                  setactions(actions);
+                  setActions(actions);
                 }}
               />
             ))}
@@ -85,7 +89,7 @@ const ActionForm: React.FC<ActionFormProps> = ({
               <button
                 type="button"
                 onClick={() => {
-                  if (actions.length < 3) setactions([...actions, ['0', '0']]);
+                  if (actions.length < 3) setActions([...actions, ['0', '0']]);
                 }}
               >
                 Add Action

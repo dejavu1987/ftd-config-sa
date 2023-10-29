@@ -5,7 +5,7 @@ import {
   Routes,
 } from 'react-router-dom';
 
-import { mdIcoUrl, pages } from './Data';
+import { mdIcoUrl, pages as defaultPages, Page } from './Data';
 
 import GeneralSettingsForm from './components/GeneralSettings';
 import WiFiSettingsForm from './components/WifiSettings';
@@ -16,8 +16,23 @@ import './App.css';
 import './components/Forms.css';
 import { PageItem } from './components/PageItem';
 import { PageContent } from './components/PageContent';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [pages, setPages] = useState<Page[]>(defaultPages);
+
+  // Load icons from local storage on component mount
+  useEffect(() => {
+    const savedPages = localStorage.getItem('ftd.pages');
+
+    if (savedPages) {
+      setPages(JSON.parse(savedPages));
+    } else {
+      // If no icons found in local storage, use defaultIcons from Data.ts
+      setPages(defaultPages);
+    }
+  }, []);
+
   return (
     <>
       <Router>

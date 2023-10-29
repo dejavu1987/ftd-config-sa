@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Action, actions, mdIcoUrl } from '../Data';
+import { Action, actions as defaultActions, mdIcoUrl } from '../Data';
 import ActionForm from './ActionForm';
 
 export const PageContent: FC = () => {
@@ -10,6 +10,21 @@ export const PageContent: FC = () => {
     null
   );
   const [actionIsOpen, setActionIsOpen] = useState<boolean>(false);
+
+  const [actions, setActions] = useState<Action[][]>(defaultActions);
+
+  // Load actions from local storage on component mount
+  useEffect(() => {
+    const savedactions = localStorage.getItem('ftd.actions');
+
+    if (savedactions) {
+      setActions(JSON.parse(savedactions));
+    } else {
+      // If no actions found in local storage, use defaultactions from Data.ts
+      setActions(defaultActions);
+    }
+  }, []);
+
   if (!pageIndex) return;
   return (
     <section>
@@ -40,22 +55,30 @@ export const PageContent: FC = () => {
         </div>
       </div>
 
-      {selectedAction && (
-        <ActionForm
-          isOpen={actionIsOpen}
-          inputAction={selectedAction}
-          onClose={(formState) => {
-            setActionIsOpen(false);
-            console.log('closed');
-            if (formState) {
-              console.log('pageIndex');
-              console.log(pageIndex);
-              console.log(selectedActionIndex);
-              console.log(formState);
-            }
-          }}
-        />
-      )}
+      {selectedAction &&
+        actionIsOpen &&
+        selectedActionIndex !== null &&
+        selectedActionIndex > -1 && (
+          <ActionForm
+            isOpen={actionIsOpen}
+            inputAction={selectedAction}
+            onClose={(formState) => {
+              setActionIsOpen(false);
+              console.log('closed');
+              if (formState) {
+                console.log('pageIndex');
+                console.log(pageIndex);
+                console.log(selectedActionIndex);
+                console.log(formState);
+                const newActions = [...actions];
+                newActions[parseInt(pageIndex)][selectedActionIndex] =
+                  formState;
+                setActions(newActions);
+                localStorage.setItem('ftd.actions', JSON.stringify(newActions));
+              }
+            }}
+          />
+        )}
     </section>
   );
 };
