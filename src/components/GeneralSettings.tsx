@@ -3,7 +3,7 @@ import './GeneralSettings.css';
 
 const GeneralSettingsForm: React.FC = () => {
   return (
-    <div className="general-settings">
+    <div className="settings-form">
       <div className="title">
         <h3>General Settings</h3>
       </div>

@@ -5,12 +5,16 @@ import {
   Routes,
   useParams,
 } from 'react-router-dom';
+
 import './App.css';
+import './components/Forms.css';
+
 import { Action, actions, mdIcoUrl, pages } from './Data';
 import ActionForm from './components/ActionForm';
 import { useState } from 'react';
 import classNames from 'classnames';
 import GeneralSettingsForm from './components/GeneralSettings';
+import WiFiSettingsForm from './components/WifiSettings';
 
 interface PageItemProps {
   name: string;
@@ -164,6 +168,15 @@ function App() {
               <section>
                 <h2>General Settings</h2>
                 <GeneralSettingsForm />
+              </section>
+            }
+          />
+          <Route
+            path={`/wifi`}
+            element={
+              <section>
+                <h2>Wifi Settings</h2>
+                <WiFiSettingsForm />
               </section>
             }
           />
