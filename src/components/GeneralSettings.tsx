@@ -5,11 +5,17 @@ import { ftdSaveConfigUrl } from '../Data';
 const GeneralSettingsForm: React.FC = () => {
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
+    const formData = new URLSearchParams(
+      // @ts-ignore
+      new FormData(e.target as HTMLFormElement)
+    );
     try {
       await fetch(ftdSaveConfigUrl, {
         method: 'POST',
         body: formData,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       });
     } catch (e) {
       console.log('err', e);

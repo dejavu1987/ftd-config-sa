@@ -31,7 +31,7 @@ export const PageContent: FC = () => {
     }
   }, []);
 
-  if (!pageIndex) return;
+  if (pageIndex === null) return;
   return (
     <section>
       <h2>{pageName}</h2>
