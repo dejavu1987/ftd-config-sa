@@ -8,6 +8,7 @@ export default {
           100: '#FFA07A',
           300: '#FF6B4A',
           500: '#FF4500', // Your primary color
+          700: '#c54325', // Your primary color
         },
         secondary: {
           100: '#008080',

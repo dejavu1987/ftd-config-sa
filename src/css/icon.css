@@ -6,9 +6,8 @@
   @apply flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white bg-slate-800 text-center border-b-4 border-b-transparent;
 }
 
-.active .icon,
-.icon-grid.icon-grid--action .icon {
-  @apply bg-primary-500 border-b-teal-300;
+.active .icon {
+  @apply bg-primary-500 border-b-primary-700;
 }
 
 .icon img {
