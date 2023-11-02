@@ -4,7 +4,7 @@ import { mdIcoUrl, pages } from '../Data';
 
 export const Home: FC = () => {
   return (
-    <div className="grid grid--action">
+    <div className="icon-grid icon-grid--action">
       {pages.map((page, index) => (
         <PageItem
           key={index}

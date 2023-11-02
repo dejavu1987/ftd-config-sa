@@ -13,7 +13,6 @@ import { ManageIcons } from './components/ManageIcons';
 import { Home } from './components/Home';
 
 import './App.css';
-import './components/Forms.css';
 import { PageItem } from './components/PageItem';
 import { PageContent } from './components/PageContent';
 import { useEffect, useState } from 'react';
@@ -36,11 +35,11 @@ function App() {
   return (
     <>
       <Router>
-        <header>
+        <header className="p-5">
           <h1>FTD Configurator</h1>
         </header>
 
-        <section className="grid">
+        <section className="icon-grid">
           {pages.map((page, index) => (
             <NavLink
               key={index}

@@ -28,6 +28,40 @@ export const ManageIcons: FC = () => {
     setIcons(updatedIcons);
   };
 
+  const handleDownloadIcons = () => {
+    // Send a POST request to the API to download icons as a ZIP file
+    const iconNames = icons; // Assuming icons is an array of icon names
+    fetch(
+      'https://436teoijgb.execute-api.eu-central-1.amazonaws.com/get-icons',
+      {
+        method: 'POST',
+        body: JSON.stringify({ iconNames }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+      .then((response) => response.blob())
+      .then((blob) => {
+        // Create a temporary URL for the ZIP file
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a temporary anchor element to trigger the download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'icons.zip';
+
+        // Simulate a click to trigger the download
+        a.click();
+
+        // Release the temporary URL
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error('Error downloading icons:', error);
+      });
+  };
+
   return (
     <div className="settings-form">
       <AddIconForm
@@ -62,6 +96,12 @@ export const ManageIcons: FC = () => {
           </div>
         ))}
       </div>
+      <button
+        className="download-zip button button--primary"
+        onClick={handleDownloadIcons}
+      >
+        Download icons as ZIP
+      </button>
     </div>
   );
 };

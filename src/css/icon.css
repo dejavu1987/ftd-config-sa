@@ -1,0 +1,53 @@
+.icon-grid {
+  @apply grid grid-cols-3 gap-5 text-center max-w-screen-sm mx-auto;
+}
+
+.icon {
+  @apply flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 cursor-pointer bg-gradient-to-b from-gray-200 to-gray-100 shadow-inner text-black text-center;
+}
+
+.active .icon,
+.icon-grid.icon-grid--action .icon {
+  @apply bg-red-200;
+}
+
+.icon img {
+  @apply w-20 h-20;
+}
+
+.icon p {
+  @apply m-0;
+}
+
+.icon:hover {
+  @apply bg-gray-200;
+}
+
+.icon.icon-grid--action:hover,
+.icon.active:hover {
+  @apply bg-blue-300;
+}
+
+.icon-img {
+  @apply w-8;
+
+  &.lg {
+    @apply w-16;
+  }
+}
+
+.icon.icon.sm {
+  @apply flex gap-2 justify-center items-center;
+
+  img {
+    @apply w-4 h-4;
+  }
+}
+
+.remove-icon {
+  @apply bg-red-300 rounded-full p-0 w-4 h-4;
+
+  &:hover {
+    @apply bg-red-400;
+  }
+}

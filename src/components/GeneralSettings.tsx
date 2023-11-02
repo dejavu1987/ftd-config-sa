@@ -26,13 +26,9 @@ const GeneralSettingsForm: React.FC = () => {
   };
   return (
     <div className="settings-form">
-      <div className="title">
-        <h3>General Settings</h3>
-      </div>
-
       <form method="post" id="generalconfig" onSubmit={handleSubmit}>
         <div className="title">
-          <h2>Colors</h2>
+          <h4>Colors</h4>
         </div>
 
         <div className="form">
@@ -62,7 +58,7 @@ const GeneralSettingsForm: React.FC = () => {
         </div>
 
         <div className="title">
-          <h2>Deep Sleep</h2>
+          <h4>Deep Sleep</h4>
         </div>
 
         <div className="form">
@@ -86,7 +82,7 @@ const GeneralSettingsForm: React.FC = () => {
         </div>
 
         <div className="title">
-          <h2>Sound</h2>
+          <h4>Sound</h4>
         </div>
 
         <div className="form">
@@ -100,7 +96,7 @@ const GeneralSettingsForm: React.FC = () => {
         </div>
 
         <div className="title">
-          <h2>FreeTouchDeck Helpers</h2>
+          <h4>FreeTouchDeck Helpers</h4>
         </div>
         <div className="form">
           <div className="form-field">
@@ -149,7 +145,7 @@ const GeneralSettingsForm: React.FC = () => {
           <input type="hidden" id="save" name="save" value="general" />
           <br />
           <button
-            style={{ cursor: 'pointer' }}
+            className="button button--primary"
             form="generalconfig"
             type="submit"
           >

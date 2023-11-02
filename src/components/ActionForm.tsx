@@ -87,6 +87,7 @@ const ActionForm: React.FC<ActionFormProps> = ({
             ))}
             {actions.length < 3 && (
               <button
+                className="button button--secondary"
                 type="button"
                 onClick={() => {
                   if (actions.length < 3) setActions([...actions, ['0', '0']]);
@@ -118,7 +119,9 @@ const ActionForm: React.FC<ActionFormProps> = ({
               </>
             )}
           </section>
-          <button type="submit">Save</button>
+          <button className="button button--primary" type="submit">
+            Save
+          </button>
         </form>
       </div>
     </div>

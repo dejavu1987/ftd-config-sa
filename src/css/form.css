@@ -1,0 +1,38 @@
+.settings-form {
+  @apply max-w-3xl mx-auto text-left;
+}
+
+.title {
+  @apply text-blue-700;
+}
+
+.form input,
+.form select {
+  @apply w-24 h-8 px-1 rounded-md;
+}
+
+/* Base styles for the form */
+.form {
+  @apply w-full text-center mx-auto;
+}
+
+/* Style for form fields and labels */
+.form-field {
+  @apply flex flex-wrap justify-between mb-4;
+}
+
+/* Zebra effect for alternative form fields */
+.form-field:nth-child(odd) {
+  @apply bg-gray-200;
+}
+
+/* Label styles */
+.form-field label {
+  @apply w-2/5 text-right py-1;
+}
+
+/* Field (input/select) styles */
+.form-field input,
+.form-field select {
+  @apply w-3/5 h-8 px-1 rounded-md;
+}

@@ -1,0 +1,7 @@
+.popup-background {
+  @apply fixed top-0 left-0 w-full h-full bg-opacity-70 bg-black z-50;
+}
+
+.popup-content {
+  @apply absolute top-1/2 left-1/2 w-3/4 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 border border-gray-300 rounded shadow z-10;
+}

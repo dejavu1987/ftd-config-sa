@@ -35,7 +35,7 @@ export const PageContent: FC = () => {
   return (
     <section>
       <h2>{pageName}</h2>
-      <div className="grid grid--action">
+      <div className="icon-grid icon-grid--action">
         {actions[pageIndex].map((action, index) => (
           <div
             className="action icon"

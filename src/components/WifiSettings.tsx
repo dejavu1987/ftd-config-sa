@@ -79,7 +79,9 @@ const WiFiSettingsForm: React.FC = () => {
           </div>
           <div className="form">
             <input type="hidden" id="save" name="save" value="wifi" />
-            <button type="submit">Save WiFi Config</button>
+            <button className="button button--primary" type="submit">
+              Save WiFi Config
+            </button>
           </div>
         </div>
       </form>

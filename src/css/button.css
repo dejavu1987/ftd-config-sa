@@ -1,0 +1,36 @@
+/* button.css */
+
+/* Button Block */
+.button {
+  @apply px-4 py-2 rounded-md focus:outline-none transition-colors duration-300 ease-in-out;
+}
+
+/* Primary Button Modifier */
+.button--primary {
+  @apply bg-primary-100 text-white hover:bg-primary-300;
+}
+
+/* Secondary Button Modifier */
+.button--secondary {
+  @apply bg-secondary-100 text-white hover:bg-secondary-300;
+}
+
+/* Tertiary Button Modifier */
+.button--tertiary {
+  @apply bg-tertiary-100 text-white hover:bg-tertiary-300;
+}
+
+/* Small Button Modifier */
+.button--small {
+  @apply text-sm;
+}
+
+/* Large Button Modifier */
+.button--large {
+  @apply text-lg;
+}
+
+/* Disabled Button Modifier */
+.button--disabled {
+  @apply cursor-not-allowed opacity-50;
+}
