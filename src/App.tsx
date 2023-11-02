@@ -16,9 +16,11 @@ import './App.css';
 import { PageItem } from './components/PageItem';
 import { PageContent } from './components/PageContent';
 import { useEffect, useState } from 'react';
+import { useGeneralSettings } from './hooks/UseGeneralSettings';
 
 function App() {
   const [pages, setPages] = useState<Page[]>(defaultPages);
+  const { settings } = useGeneralSettings();
 
   // Load icons from local storage on component mount
   useEffect(() => {
@@ -50,6 +52,7 @@ function App() {
                 key={index}
                 name={page.name}
                 icon={`${mdIcoUrl}${page.icon}.svg`}
+                style={{ backgroundColor: settings.menubuttoncolor }}
               />
             </NavLink>
           ))}

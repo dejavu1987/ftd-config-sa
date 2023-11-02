@@ -51,7 +51,7 @@ export const PageContent: FC = () => {
           </div>
         ))}
         <div
-          className="action icon"
+          className="icon"
           onClick={async () => {
             console.log('Save');
             const formData = new FormData();

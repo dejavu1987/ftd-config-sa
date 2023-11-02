@@ -1,14 +1,16 @@
-import React, { FormEventHandler } from 'react';
-import './GeneralSettings.css';
 import { ftdSaveConfigUrl } from '../Data';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useGeneralSettings } from '../hooks/UseGeneralSettings';
 
 const GeneralSettingsForm: React.FC = () => {
-  const handleSubmit: FormEventHandler = async (e) => {
-    e.preventDefault();
-    const formData = new URLSearchParams(
-      // @ts-ignore
-      new FormData(e.target as HTMLFormElement)
-    );
+  const { handleSubmit, register, reset } = useForm();
+  const { settings, updateGeneralSettings } = useGeneralSettings();
+
+  useEffect(() => {
+    reset(settings);
+  }, [reset, settings]);
+  const sendToFTD = async (formData: string) => {
     try {
       await fetch(ftdSaveConfigUrl, {
         method: 'POST',
@@ -24,9 +26,14 @@ const GeneralSettingsForm: React.FC = () => {
       );
     }
   };
+  const onSubmit = async (data: Record<string, string>) => {
+    console.log(data);
+    updateGeneralSettings(data);
+    await sendToFTD(new URLSearchParams(data).toString());
+  };
   return (
     <div className="settings-form">
-      <form method="post" id="generalconfig" onSubmit={handleSubmit}>
+      <form method="post" id="generalconfig" onSubmit={handleSubmit(onSubmit)}>
         <div className="title">
           <h4>Colors</h4>
         </div>
@@ -34,26 +41,30 @@ const GeneralSettingsForm: React.FC = () => {
         <div className="form">
           <div className="form-field">
             <label htmlFor="menubuttoncolor">Menu Button Colour:</label>
-            <input id="menubuttoncolor" name="menubuttoncolor" type="color" />
+            <input
+              id="menubuttoncolor"
+              {...register('menubuttoncolor')}
+              type="color"
+            />
           </div>
 
           <div className="form-field">
             <label htmlFor="functionbuttoncolor">Function Button Colour:</label>
             <input
               id="functionbuttoncolor"
-              name="functionbuttoncolor"
+              {...register('functionbuttoncolor')}
               type="color"
             />
           </div>
 
           <div className="form-field">
             <label htmlFor="latchcolor">Latch Colour:</label>
-            <input id="latchcolor" name="latchcolor" type="color" />
+            <input id="latchcolor" {...register('latchcolor')} type="color" />
           </div>
 
           <div className="form-field">
             <label htmlFor="background">Background Colour:</label>
-            <input id="background" name="background" type="color" />
+            <input id="background" {...register('background')} type="color" />
           </div>
         </div>
 
@@ -64,7 +75,11 @@ const GeneralSettingsForm: React.FC = () => {
         <div className="form">
           <div className="form-field">
             <label htmlFor="sleepenable">Deep Sleep:</label>
-            <select className="sleepenable" id="sleepenable" name="sleepenable">
+            <select
+              className="sleepenable"
+              id="sleepenable"
+              {...register('sleepenable')}
+            >
               <option value="true">Enabled</option>
               <option value="false">Disabled</option>
             </select>
@@ -72,7 +87,11 @@ const GeneralSettingsForm: React.FC = () => {
 
           <div className="form-field">
             <label htmlFor="sleeptimer">Deep Sleep Timer:</label>
-            <select className="sleeptimer" id="sleeptimer" name="sleeptimer">
+            <select
+              className="sleeptimer"
+              id="sleeptimer"
+              {...register('sleeptimer')}
+            >
               <option value="10">10 Minutes</option>
               <option value="20">20 Minutes</option>
               <option value="30">30 Minutes</option>
@@ -88,7 +107,7 @@ const GeneralSettingsForm: React.FC = () => {
         <div className="form">
           <div className="form-field">
             <label htmlFor="beep">Beep on Touch:</label>
-            <select className="sleepenable" id="beep" name="beep">
+            <select className="sleepenable" id="beep" {...register('beep')}>
               <option value="true">Enabled</option>
               <option value="false">Disabled</option>
             </select>
@@ -101,7 +120,11 @@ const GeneralSettingsForm: React.FC = () => {
         <div className="form">
           <div className="form-field">
             <label htmlFor="modifier1">Modifier 1:</label>
-            <select className="modifier1" id="modifier1" name="modifier1">
+            <select
+              className="modifier1"
+              id="modifier1"
+              {...register('modifier1')}
+            >
               <option value="0">None</option>
               <option value="128">CTRL</option>
               <option value="129">SHIFT</option>
@@ -111,7 +134,11 @@ const GeneralSettingsForm: React.FC = () => {
           </div>
           <div className="form-field">
             <label htmlFor="modifier2">Modifier 2:</label>
-            <select className="modifier2" id="modifier2" name="modifier2">
+            <select
+              className="modifier2"
+              id="modifier2"
+              {...register('modifier2')}
+            >
               <option value="0">None</option>
               <option value="128">CTRL</option>
               <option value="129">SHIFT</option>
@@ -121,7 +148,11 @@ const GeneralSettingsForm: React.FC = () => {
           </div>
           <div className="form-field">
             <label htmlFor="modifier3">Modifier 3:</label>
-            <select className="modifier3" id="modifier3" name="modifier3">
+            <select
+              className="modifier3"
+              id="modifier3"
+              {...register('modifier3')}
+            >
               <option value="0">None</option>
               <option value="128">CTRL</option>
               <option value="129">SHIFT</option>
@@ -131,7 +162,11 @@ const GeneralSettingsForm: React.FC = () => {
           </div>
           <div className="form-field">
             <label htmlFor="helperdelay">Delay after helper (ms):</label>
-            <select className="helperdelay" id="helperdelay" name="helperdelay">
+            <select
+              className="helperdelay"
+              id="helperdelay"
+              {...register('helperdelay')}
+            >
               <option value="0">0</option>
               <option value="100">100</option>
               <option value="200">200</option>
@@ -142,7 +177,12 @@ const GeneralSettingsForm: React.FC = () => {
         </div>
 
         <div className="form">
-          <input type="hidden" id="save" name="save" value="general" />
+          <input
+            type="hidden"
+            id="save"
+            {...register('save')}
+            value="general"
+          />
           <br />
           <button
             className="button button--primary"

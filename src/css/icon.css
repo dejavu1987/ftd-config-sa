@@ -3,16 +3,16 @@
 }
 
 .icon {
-  @apply flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 cursor-pointer bg-gradient-to-b from-gray-200 to-gray-100 shadow-inner text-black text-center;
+  @apply flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white text-center border-b-4 border-b-transparent;
 }
 
 .active .icon,
 .icon-grid.icon-grid--action .icon {
-  @apply bg-red-200;
+  @apply bg-red-200 border-b-teal-300;
 }
 
 .icon img {
-  @apply w-20 h-20;
+  @apply w-20 h-20 invert;
 }
 
 .icon p {

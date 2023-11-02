@@ -18,7 +18,7 @@
 
 /* Style for form fields and labels */
 .form-field {
-  @apply flex flex-wrap justify-between mb-4;
+  @apply flex mb-4 p-1 gap-2;
 }
 
 /* Zebra effect for alternative form fields */
@@ -35,4 +35,7 @@
 .form-field input,
 .form-field select {
   @apply w-3/5 h-8 px-1 rounded-md;
+}
+.form-field input[type='color'] {
+  @apply w-20;
 }
