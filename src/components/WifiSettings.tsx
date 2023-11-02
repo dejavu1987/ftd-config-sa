@@ -16,6 +16,9 @@ const WiFiSettingsForm: React.FC = () => {
       await fetch(ftdSaveConfigUrl, {
         method: 'POST',
         body: data,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       });
     } catch (e) {
       console.log('err', e);
