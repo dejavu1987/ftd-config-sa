@@ -97,7 +97,7 @@ export const ManageIcons: FC = () => {
         ))}
       </div>
       <button
-        className="download-zip button button--primary"
+        className="download-zip button button--primary mt-4"
         onClick={handleDownloadIcons}
       >
         Download icons as ZIP

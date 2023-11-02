@@ -1,13 +1,13 @@
 h1 {
-  @apply text-6xl font-bold mb-4; /* Added a margin-bottom of 1rem */
+  @apply text-3xl font-bold mb-4; /* Added a margin-bottom of 1rem */
 }
 
 h2 {
-  @apply text-4xl font-semibold mb-3; /* Added a margin-bottom of 0.75rem */
+  @apply text-2xl font-semibold mb-3; /* Added a margin-bottom of 0.75rem */
 }
 
 h3 {
-  @apply text-2xl font-semibold mb-2; /* Added a margin-bottom of 0.5rem */
+  @apply text-xl font-semibold mb-2; /* Added a margin-bottom of 0.5rem */
 }
 
 h4 {

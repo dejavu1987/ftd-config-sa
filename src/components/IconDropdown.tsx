@@ -22,7 +22,7 @@ const IconDropdown: FC<IconDropdownProps> = ({ options, value, onChange }) => {
   };
 
   return (
-    <div className="icon-dropdown">
+    <div className="icon-dropdown text-center flex justify-center">
       <div className="selected-icon" onClick={toggleDropdown}>
         <img
           className="icon-img lg"

@@ -100,17 +100,18 @@ const ActionForm: React.FC<ActionFormProps> = ({
 
           <section className="section">
             {/* Section 4: Latch Configuration */}
-            <label>
+            <div className="form-field">
+              <label htmlFor="latch">Latch</label>
               <input
+                id="latch"
                 type="checkbox"
                 checked={latch}
                 onChange={(e) => setLatch(e.target.checked)}
               />
-              Latch
-            </label>
+            </div>
+
             {latch && (
               <>
-                <label htmlFor="">Latch icon</label>
                 <IconDropdown
                   options={icons}
                   value={latchIcon}

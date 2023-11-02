@@ -7,8 +7,10 @@ import {
   mdIcoUrl,
 } from '../Data';
 import ActionForm from './ActionForm';
+import { useGeneralSettings } from '../hooks/UseGeneralSettings';
 
 export const PageContent: FC = () => {
+  const { settings } = useGeneralSettings();
   const { pageName, pageIndex: pageIdx } = useParams();
   const pageIndex = pageIdx ? parseInt(pageIdx) : null;
   const [selectedAction, setSelectedAction] = useState<Action | null>(null);
@@ -38,13 +40,14 @@ export const PageContent: FC = () => {
       <div className="icon-grid icon-grid--action">
         {actions[pageIndex].map((action, index) => (
           <div
-            className="action icon"
+            className="icon"
             key={index}
             onClick={() => {
               setActionIsOpen(true);
               setSelectedAction(action);
               setSelectedActionIndex(index);
             }}
+            style={{ backgroundColor: settings.functionbuttoncolor }}
           >
             <img src={`${mdIcoUrl}${action.icon}.svg`} alt={action.name} />
             <p>{action.name}</p>

@@ -2,6 +2,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed;
+  text-align: center;
   top: 0;
   left: 0;
   width: 100%;
@@ -62,11 +63,6 @@ input {
   gap: 1rem;
 }
 
-label {
-  width: 100%;
-  display: block;
-  text-align: left;
-}
 input[type='checkbox'] {
   width: auto;
 }

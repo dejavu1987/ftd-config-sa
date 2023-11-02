@@ -1,15 +1,13 @@
-/* Base styles for .icon-list */
 .icon-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 -10px; /* Add negative margin to offset padding */
   width: 100%;
 }
 
 /* Styles for individual icons within the grid */
 .icon-option {
-  width: calc(100% / 4 - 2px); /* 6 icons per row for mobile */
+  width: calc(100% / 4 - 5px); /* 6 icons per row for mobile */
   padding: 10px;
   box-sizing: border-box;
   text-align: center;

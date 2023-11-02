@@ -32,16 +32,22 @@ class AddIconForm extends Component<AddIconFormProps, AddIconFormState> {
   render() {
     return (
       <form className="container" onSubmit={this.handleSubmit}>
-        <div className="form-field flex">
-          <label htmlFor="addIcon">Add Icon</label>
+        <div className="flex justify-center items-center gap-2 my-5">
+          <label htmlFor="addIcon" className="flex-shrink whitespace-nowrap">
+            Add Icon
+          </label>
           <input
             id="addIcon"
+            className="flex-grow"
             type="text"
             value={this.state.iconName}
             onChange={this.handleChange}
             placeholder="Icon Name"
           />
-          <button className="button button--primary" type="submit">
+          <button
+            className="button button--secondary whitespace-nowrap"
+            type="submit"
+          >
             Add Icon
           </button>
         </div>
