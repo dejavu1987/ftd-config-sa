@@ -20,6 +20,12 @@ The Standalone FreeTouchDeck Configurator / FTD-Config-SD, is a stand-alone appl
 - **Offloads Static Files:** Hosting the configurator separately reduces the resource load on the ESP32 device by moving static files to the separate app.
 - **Consistency:** Helps ensure that the configurator and FTD core remain in sync.
 
+| Feature                    | Progress |
+|---------------------------  |--------- |
+| Icon management            | ████████ 70% |
+| General and Wifi Settings  | ██████████ 80% |
+| Menu management            | ███████ 50% |
+
 ## Tech Stack
 
 The FreeTouchDeck Configurator is built using the following technologies:
