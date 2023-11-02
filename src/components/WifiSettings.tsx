@@ -1,14 +1,21 @@
-import React, { FormEventHandler } from 'react';
+import React, { useEffect } from 'react';
 import { ftdSaveConfigUrl } from '../Data';
+import { useForm } from 'react-hook-form';
 
 const WiFiSettingsForm: React.FC = () => {
-  const handleSubmit: FormEventHandler = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
+  const { handleSubmit, register, reset } = useForm<Record<string, string>>();
+  useEffect(() => {
+    const savedSettings = localStorage.getItem('ftd.wifiSettings');
+    if (savedSettings) {
+      reset(JSON.parse(savedSettings));
+    }
+  }, [reset]);
+
+  const sendToFTD = async (data: string) => {
     try {
       await fetch(ftdSaveConfigUrl, {
         method: 'POST',
-        body: formData,
+        body: data,
       });
     } catch (e) {
       console.log('err', e);
@@ -18,20 +25,25 @@ const WiFiSettingsForm: React.FC = () => {
     }
   };
 
+  const onSubmit = async (data: Record<string, string>) => {
+    localStorage.setItem('ftd.wifiSettings', JSON.stringify(data));
+    await sendToFTD(new URLSearchParams(data).toString());
+  };
+
   return (
     <div id="wifi" className="settings-form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form">
           <div className="form-field">
             <label htmlFor="ssid">WiFi SSID:</label>
-            <input type="text" id="ssid" name="ssid" />
+            <input type="text" id="ssid" {...register('ssid')} />
           </div>
           <div className="form-field">
             <label htmlFor="password">WiFi Password:</label>
             <input
               type="password"
               id="password"
-              name="password"
+              {...register('password')}
               autoComplete="new-password"
             />
           </div>
@@ -39,25 +51,37 @@ const WiFiSettingsForm: React.FC = () => {
             <label htmlFor="showpassword">Show Password</label>
             <input
               id="showpassword"
-              name="showpassword"
+              {...register('showpassword')}
               type="checkbox"
               onClick={togglePassword}
             />
           </div>
           <div className="form-field">
             <label htmlFor="wifimode">WiFi Mode:</label>
-            <select className="wifimode" id="wifimode" name="wifimode">
+            <select
+              className="wifimode"
+              id="wifimode"
+              {...register('wifimode')}
+            >
               <option value="WIFI_STA">Station</option>
               <option value="WIFI_AP">Access Point</option>
             </select>
           </div>
           <div className="form-field">
             <label htmlFor="wifihostname">WiFi Hostname:</label>
-            <input type="text" id="wifihostname" name="wifihostname" />
+            <input
+              type="text"
+              id="wifihostname"
+              {...register('wifihostname')}
+            />
           </div>
           <div className="form-field">
             <label htmlFor="attempts">Connection attempts:</label>
-            <select className="attempts" id="attempts" name="attempts">
+            <select
+              className="attempts"
+              id="attempts"
+              {...register('attempts')}
+            >
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
@@ -69,7 +93,7 @@ const WiFiSettingsForm: React.FC = () => {
             <select
               className="attemptdelay"
               id="attemptdelay"
-              name="attemptdelay"
+              {...register('attemptdelay')}
             >
               <option value="100">100 ms</option>
               <option value="500">500 ms</option>
@@ -78,7 +102,7 @@ const WiFiSettingsForm: React.FC = () => {
             </select>
           </div>
           <div className="form">
-            <input type="hidden" id="save" name="save" value="wifi" />
+            <input type="hidden" id="save" {...register('save')} value="wifi" />
             <button className="button button--primary" type="submit">
               Save WiFi Config
             </button>
