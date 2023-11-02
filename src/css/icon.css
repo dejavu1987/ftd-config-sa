@@ -45,9 +45,38 @@
 }
 
 .remove-icon {
-  @apply bg-red-300 rounded-full p-0 w-4 h-4;
+  @apply bg-red-300 rounded-full p-0 w-5 h-5 absolute right-0 bottom-0 opacity-10;
 
   &:hover {
-    @apply bg-red-400;
+    @apply bg-red-400 opacity-100;
   }
+}
+
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Styles for individual icons within the grid */
+
+.icon-option {
+  @apply relative;
+  width: 63px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  background: #eee;
+  color: black;
+  border: 1px solid #bbb;
+  margin: 0;
+  transition: background 0.3s, color 0.3s; /* Smooth transition for hover effect */
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 1px;
+}
+
+.icon-option:hover {
+  background: #fff;
 }

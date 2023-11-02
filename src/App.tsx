@@ -34,8 +34,8 @@ function App() {
               >
                 <PageItem
                   className="sm"
-                  name="Config Menus"
-                  icon={`${mdIcoUrl}menu.svg`}
+                  name="Menus"
+                  icon={`${mdIcoUrl}home.svg`}
                 />
               </NavLink>
               <NavLink
@@ -44,7 +44,7 @@ function App() {
               >
                 <PageItem
                   className="sm"
-                  name="Config WiFi"
+                  name="WiFi"
                   icon={`${mdIcoUrl}wifi.svg`}
                 />
               </NavLink>
