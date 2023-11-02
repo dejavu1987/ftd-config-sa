@@ -1,8 +1,6 @@
 import { FC, useState } from 'react';
 import { mdIcoUrl } from '../Data';
 
-import './IconDropdown.css';
-
 type IconDropdownProps = {
   options: string[];
   value?: string;
