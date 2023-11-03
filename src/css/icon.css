@@ -54,21 +54,6 @@
   @apply bg-primary-100;
 }
 
-.remove-icon {
-  @apply bg-red-300 rounded-full p-0 w-5 h-5 absolute right-0 bottom-0 opacity-10;
-
-  &:hover {
-    @apply bg-red-400 opacity-100;
-  }
-}
-
-.icon-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-
 /* Styles for individual icons within the grid */
 
 .icon-option {
@@ -89,4 +74,23 @@
 
 .icon-option:hover {
   background: #fff;
+}
+
+.remove-icon {
+  @apply bg-red-300 rounded-full p-0 w-5 h-5 absolute right-0 bottom-0 opacity-10;
+
+  img {
+    @apply w-5 h-5;
+  }
+
+  &:hover {
+    @apply bg-red-400 opacity-100;
+  }
+}
+
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }

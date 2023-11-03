@@ -33,6 +33,37 @@ export const PageContent: FC = () => {
     }
   }, []);
 
+  const savePage = async (pageIndex: number) => {
+    console.log('Save');
+    const formData = new FormData();
+    formData.append('save', `menu${pageIndex + 1}`);
+    actions[pageIndex].forEach((item, index) => {
+      formData.append(`screen${pageIndex + 1}logo${index}`, `${item.icon}.bmp`);
+      formData.append(
+        `screen${pageIndex + 1}latchlogo${index}`,
+        item.latchIcon || '---'
+      );
+      for (let i = 0; i < 3; i++) {
+        formData.append(
+          `screen${pageIndex + 1}button${index}action${i}`,
+          item.actions[i] ? item.actions[i][0] : '0'
+        );
+        formData.append(
+          `screen${pageIndex + 1}button${index}value${i}`,
+          item.actions[i] ? item.actions[i][1] : '0'
+        );
+      }
+    });
+    await fetch(ftdSaveConfigUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      // @ts-expect-error This their bug
+      body: new URLSearchParams(formData).toString(),
+    });
+  };
+
   if (pageIndex === null) return;
   return (
     <section>
@@ -58,38 +89,8 @@ export const PageContent: FC = () => {
         ))}
         <div
           className="icon"
-          onClick={async () => {
-            console.log('Save');
-            const formData = new FormData();
-            formData.append('save', `menu${pageIndex + 1}`);
-            actions[pageIndex].forEach((item, index) => {
-              formData.append(
-                `screen${pageIndex + 1}logo${index}`,
-                `${item.icon}.bmp`
-              );
-              formData.append(
-                `screen${pageIndex + 1}latchlogo${index}`,
-                item.latchIcon || '---'
-              );
-              for (let i = 0; i < 3; i++) {
-                formData.append(
-                  `screen${pageIndex + 1}button${index}action${i}`,
-                  item.actions[i] ? item.actions[i][0] : '0'
-                );
-                formData.append(
-                  `screen${pageIndex + 1}button${index}value${i}`,
-                  item.actions[i] ? item.actions[i][1] : '0'
-                );
-              }
-            });
-            await fetch(ftdSaveConfigUrl, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              // @ts-expect-error This their bug
-              body: new URLSearchParams(formData).toString(),
-            });
+          onClick={() => {
+            savePage(pageIndex);
           }}
         >
           <img src={`${mdIcoUrl}floppy.svg`} alt="Home" />

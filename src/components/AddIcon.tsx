@@ -33,16 +33,14 @@ class AddIconForm extends Component<AddIconFormProps, AddIconFormState> {
     return (
       <form className="container" onSubmit={this.handleSubmit}>
         <div className="flex justify-center items-center gap-2 my-5">
-          <label htmlFor="addIcon" className="flex-shrink whitespace-nowrap">
-            Add Icon
-          </label>
           <input
             id="addIcon"
-            className="flex-grow"
+            className="flex-grow py-5"
             type="text"
             value={this.state.iconName}
             onChange={this.handleChange}
             placeholder="Icon Name"
+            aria-label="Add Icon"
           />
           <button
             className="button button--secondary whitespace-nowrap"
