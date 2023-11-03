@@ -21,7 +21,9 @@ export const ActionField: FC<{
     <>
       <div className="action-field">
         <h3>
-          <label htmlFor={`action-select-${actionId}`}>Action {actionId}</label>
+          <label htmlFor={`action-select-${actionId}`}>
+            Action {actionId + 1}
+          </label>
         </h3>
         <select
           value={action}

@@ -9,12 +9,14 @@ interface ActionFormProps {
   isOpen: boolean;
   onClose: (formState: Action | null) => void;
   inputAction: Action;
+  page: string;
 }
 
 const ActionForm: React.FC<ActionFormProps> = ({
   isOpen,
   onClose,
   inputAction,
+  page,
 }) => {
   const [icon, setIcon] = useState<string>(inputAction.icon);
   const [icons, setIcons] = useState<string[]>([]);
@@ -63,8 +65,9 @@ const ActionForm: React.FC<ActionFormProps> = ({
         <span className="close" onClick={() => onClose(null)}>
           &times;
         </span>
-        <h2>Action Configuration:</h2>
-        <h3>{inputAction.name}</h3>
+        <h2>
+          {page} / {inputAction.name}
+        </h2>
         <form onSubmit={handleSubmit}>
           <section className="section">
             <IconDropdown

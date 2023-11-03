@@ -3,7 +3,7 @@
 }
 
 .title {
-  @apply text-blue-700;
+  @apply text-secondary-100;
 }
 
 input,
@@ -38,4 +38,18 @@ select {
 }
 input[type='color'] {
   @apply w-20;
+}
+
+.form-sections-grid {
+  @apply md:grid md:grid-cols-2;
+
+  @screen md {
+    .form-section {
+      @apply p-4;
+    }
+
+    label {
+      @apply w-2/3;
+    }
+  }
 }

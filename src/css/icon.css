@@ -1,9 +1,9 @@
 .icon-grid {
-  @apply grid grid-cols-3 gap-5 text-center max-w-screen-sm mx-auto;
+  @apply grid grid-cols-3 gap-5 text-center max-w-screen-sm mx-auto p-5 rounded-md;
 }
 
 .icon {
-  @apply flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white bg-slate-800 text-center border-b-4 border-b-transparent;
+  @apply flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white bg-slate-800 text-center;
 }
 
 .active .icon {
@@ -15,7 +15,7 @@
 }
 
 .icon p {
-  @apply m-0;
+  @apply m-0 text-xs sm:text-sm md:text-base;
 }
 
 .icon:hover {

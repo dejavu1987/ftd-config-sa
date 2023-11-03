@@ -37,7 +37,10 @@ export const PageContent: FC = () => {
   return (
     <section>
       <h2>{pageName}</h2>
-      <div className="icon-grid icon-grid--action">
+      <div
+        className="icon-grid icon-grid--action"
+        style={{ backgroundColor: settings.background }}
+      >
         {actions[pageIndex].map((action, index) => (
           <div
             className="icon"
@@ -76,6 +79,7 @@ export const PageContent: FC = () => {
         selectedActionIndex !== null &&
         selectedActionIndex > -1 && (
           <ActionForm
+            page={pageName || ''}
             isOpen={actionIsOpen}
             inputAction={selectedAction}
             onClose={(formState) => {

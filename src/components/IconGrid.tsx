@@ -22,7 +22,10 @@ export const IconGrid = () => {
   return (
     <>
       <h2>Home</h2>
-      <section className="icon-grid">
+      <section
+        className="icon-grid"
+        style={{ backgroundColor: settings.background }}
+      >
         {pages.map((page, index) => (
           <NavLink
             key={index}

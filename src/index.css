@@ -17,7 +17,15 @@
 }
 
 @layer base {
+  * {
+    @apply text-sm md:text-base lg:text-lg;
+  }
+
   a {
     @apply text-gray-500;
+  }
+
+  main {
+    @apply p-5;
   }
 }
