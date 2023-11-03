@@ -7,10 +7,13 @@ import {
   ftdSaveConfigUrl,
 } from '../Data';
 import { useGeneralSettings } from '../hooks/UseGeneralSettings';
+import IconDropdown from './IconDropdown';
+import { useIcons } from '../hooks/UseIcons';
 
 export const Home: FC = () => {
   const { settings } = useGeneralSettings();
   const [pages, setPages] = useState<Page[]>([]);
+  const { icons } = useIcons();
 
   // Load Pages from local storage on component mount
   useEffect(() => {
@@ -46,16 +49,32 @@ export const Home: FC = () => {
     });
   };
 
+  const changeIcon = (idx: number, newIcon: string) => {
+    const updatedPages = [...pages];
+    updatedPages[idx].icon = newIcon;
+    setPages(updatedPages);
+  };
+
   return (
     <div className="icon-grid" style={{ backgroundColor: settings.background }}>
       {pages.map((page, index) => (
-        <IconButton
-          className="icon"
-          key={index}
-          name={page.name}
-          icon={`${mdIcoUrl}${page.icon}.svg`}
-          style={{ backgroundColor: settings.menubuttoncolor }}
-        />
+        <div className="relative">
+          <IconButton
+            className="icon"
+            key={index}
+            name={page.name}
+            icon={`${mdIcoUrl}${page.icon}.svg`}
+            style={{ backgroundColor: settings.menubuttoncolor }}
+          />
+          <IconDropdown
+            options={icons}
+            value={page.icon}
+            className="absolute left-0 top-0 w-full hidden-selected"
+            onIconChange={(newIcon) => {
+              changeIcon(index, newIcon);
+            }}
+          />
+        </div>
       ))}
       <IconButton
         className="icon"

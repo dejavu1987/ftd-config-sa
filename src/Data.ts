@@ -211,12 +211,16 @@ export const actions: Action[][] = [
 ];
 
 export const icons: string[] = [
+  'multimedia',
+  'video-wireless',
+  'youtube',
+  'movie-open-edit',
+  'google-chrome',
   'volume-plus',
   'volume-minus',
   'skip-next',
   'play-pause',
   'skip-previous',
-  'volume-off',
   'access-point',
   'access-point-off',
   'record-rec',
@@ -233,11 +237,6 @@ export const icons: string[] = [
   'tab-remove',
   'refresh',
   'bookmark',
-  'layers',
-  'crop',
-  'image-filter-black-white',
-  'undo',
-  'border-none-variant',
 ];
 
 export type Subitem = {

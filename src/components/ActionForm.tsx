@@ -70,7 +70,7 @@ const ActionForm: React.FC<ActionFormProps> = ({
             <IconDropdown
               options={icons}
               value={icon}
-              onChange={(newIcon) => setIcon(newIcon)}
+              onIconChange={(newIcon) => setIcon(newIcon)}
             />
           </section>
           <section className="section ">
@@ -115,7 +115,7 @@ const ActionForm: React.FC<ActionFormProps> = ({
                 <IconDropdown
                   options={icons}
                   value={latchIcon}
-                  onChange={(newIcon) => setLatchIcon(newIcon)}
+                  onIconChange={(newIcon) => setLatchIcon(newIcon)}
                 />
               </>
             )}

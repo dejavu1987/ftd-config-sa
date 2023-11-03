@@ -28,7 +28,11 @@
 }
 
 .icon-dropdown img {
-  @apply w-10 h-10;
+  @apply w-10 h-10 cursor-pointer;
+}
+
+.hidden-selected .selected-icon {
+  @apply opacity-0;
 }
 
 .selected-icon img {

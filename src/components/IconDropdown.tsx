@@ -1,13 +1,20 @@
 import { FC, useState } from 'react';
 import { mdIcoUrl } from '../Data';
+import classNames from 'classnames';
 
 type IconDropdownProps = {
   options: string[];
   value?: string;
-  onChange: (value: string) => void;
+  onIconChange: (value: string) => void;
 };
 
-const IconDropdown: FC<IconDropdownProps> = ({ options, value, onChange }) => {
+const IconDropdown: FC<JSX.IntrinsicElements['div'] & IconDropdownProps> = ({
+  options,
+  value,
+  onIconChange,
+  className,
+  ...rest
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -15,12 +22,18 @@ const IconDropdown: FC<IconDropdownProps> = ({ options, value, onChange }) => {
   };
 
   const selectIcon = (selectedIcon: string) => {
-    onChange(selectedIcon);
+    onIconChange(selectedIcon);
     setIsOpen(false);
   };
 
   return (
-    <div className="icon-dropdown text-center flex justify-center">
+    <div
+      className={classNames(
+        'icon-dropdown text-center flex justify-center',
+        className
+      )}
+      {...rest}
+    >
       <div className="selected-icon" onClick={toggleDropdown}>
         <img
           src={`${mdIcoUrl}${value || 'border-none-variant'}.svg`}
