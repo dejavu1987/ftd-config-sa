@@ -28,9 +28,6 @@ const ActionForm: React.FC<ActionFormProps> = ({
 
   // Load icons from local storage on component mount
   useEffect(() => {
-    console.log('inputAction');
-    console.log(inputAction);
-
     const savedIcons = localStorage.getItem('ftd.icons');
 
     if (savedIcons) {

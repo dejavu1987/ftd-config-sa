@@ -62,10 +62,33 @@ export const PageContent: FC = () => {
             console.log('Save');
             const formData = new FormData();
             formData.append('save', `menu${pageIndex + 1}`);
-            formData.append('actions', JSON.stringify(actions[pageIndex]));
+            actions[pageIndex].forEach((item, index) => {
+              formData.append(
+                `screen${pageIndex + 1}logo${index}`,
+                `${item.icon}.bmp`
+              );
+              formData.append(
+                `screen${pageIndex + 1}latchlogo${index}`,
+                item.latchIcon || '---'
+              );
+              for (let i = 0; i < 3; i++) {
+                formData.append(
+                  `screen${pageIndex + 1}button${index}action${i}`,
+                  item.actions[i] ? item.actions[i][0] : '0'
+                );
+                formData.append(
+                  `screen${pageIndex + 1}button${index}value${i}`,
+                  item.actions[i] ? item.actions[i][1] : '0'
+                );
+              }
+            });
             await fetch(ftdSaveConfigUrl, {
               method: 'POST',
-              body: formData,
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              // @ts-expect-error This their bug
+              body: new URLSearchParams(formData).toString(),
             });
           }}
         >
@@ -84,12 +107,7 @@ export const PageContent: FC = () => {
             inputAction={selectedAction}
             onClose={(formState) => {
               setActionIsOpen(false);
-              console.log('closed');
               if (formState) {
-                console.log('pageIndex');
-                console.log(pageIndex);
-                console.log(selectedActionIndex);
-                console.log(formState);
                 const newActions = [...actions];
                 newActions[pageIndex][selectedActionIndex] = formState;
                 setActions(newActions);

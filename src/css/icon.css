@@ -3,7 +3,7 @@
 }
 
 .icon {
-  @apply flex flex-col items-center justify-center w-full border border-solid border-white rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white bg-slate-800 text-center;
+  @apply flex flex-col items-center justify-center w-full min-h-[5rem] h-[calc(35vw-7.5rem)] border border-solid border-white rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white bg-slate-800 text-center md:h-auto;
 }
 
 .active .icon {
@@ -27,8 +27,15 @@
   @apply bg-blue-300;
 }
 
+.icon-dropdown img {
+  @apply w-10 h-10;
+}
+
+.selected-icon img {
+  @apply w-20 h-20;
+}
 .tabs {
-  @apply flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400;
+  @apply flex flex-wrap text-sm font-medium text-center text-gray-500 border-b-4 border-primary-100 dark:border-gray-700 dark:text-gray-400;
 }
 
 .tab {
@@ -65,11 +72,7 @@
 /* Styles for individual icons within the grid */
 
 .icon-option {
-  @apply relative;
-  width: 63px;
-  padding: 10px;
-  box-sizing: border-box;
-  text-align: center;
+  @apply relative p-2 text-center;
   background: #eee;
   color: black;
   border: 1px solid #bbb;
@@ -78,6 +81,10 @@
   cursor: pointer;
   border-radius: 5px;
   margin: 1px;
+}
+
+.icon-option img {
+  @apply w-10 h-10;
 }
 
 .icon-option:hover {

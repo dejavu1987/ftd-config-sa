@@ -23,7 +23,6 @@ const IconDropdown: FC<IconDropdownProps> = ({ options, value, onChange }) => {
     <div className="icon-dropdown text-center flex justify-center">
       <div className="selected-icon" onClick={toggleDropdown}>
         <img
-          className="icon-img lg"
           src={`${mdIcoUrl}${value || 'border-none-variant'}.svg`}
           alt={value || 'Select an icon'}
         />
@@ -32,6 +31,14 @@ const IconDropdown: FC<IconDropdownProps> = ({ options, value, onChange }) => {
       {isOpen && (
         <div className="popup-background">
           <div className="popup-content">
+            <span
+              className="close"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              ×
+            </span>
             <h2>Select an icon</h2>
 
             <div className="icon-list">
