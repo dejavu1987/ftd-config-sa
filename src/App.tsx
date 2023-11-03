@@ -12,7 +12,7 @@ import GeneralSettingsForm from './components/GeneralSettings';
 import WiFiSettingsForm from './components/WifiSettings';
 import { ManageIcons } from './components/ManageIcons';
 import { Home } from './components/Home';
-import { PageItem } from './components/PageItem';
+import { IconButton } from './components/IconButton';
 import { PageContent } from './components/PageContent';
 import { IconGrid } from './components/IconGrid';
 
@@ -20,50 +20,45 @@ function App() {
   return (
     <>
       <Router>
-        <header className="p-5 bg-primary-100">
+        <header className="p-5 pb-0 mb-6 bg-primary-700">
           <Link to={'/'}>
-            <h1 className="text-black text-lg sm:text-xl md:text-2xl">
+            <h1 className="text-white text-lg sm:text-xl md:text-2xl">
               FTD Configurator
             </h1>
           </Link>
           <nav>
-            <div className="menu flex justify-center gap-1 flex-wrap md:flex-nowrap sm:gap-2">
+            <div className="tabs flex justify-center gap-1 flex-wrap md:flex-nowrap sm:gap-2">
               <NavLink
                 to={`/`}
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) =>
+                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
+                }
               >
-                <PageItem
-                  className="sm"
-                  name="Menus"
-                  icon={`${mdIcoUrl}home.svg`}
-                />
+                <IconButton name="Menus" icon={`${mdIcoUrl}home.svg`} />
               </NavLink>
               <NavLink
                 to={`/wifi`}
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) =>
+                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
+                }
               >
-                <PageItem
-                  className="sm"
-                  name="WiFi"
-                  icon={`${mdIcoUrl}wifi.svg`}
-                />
+                <IconButton name="WiFi" icon={`${mdIcoUrl}wifi.svg`} />
               </NavLink>
               <NavLink
                 to={`/settings`}
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) =>
+                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
+                }
               >
-                <PageItem
-                  className="sm"
-                  name="Settings"
-                  icon={`${mdIcoUrl}cog.svg`}
-                />
+                <IconButton name="Settings" icon={`${mdIcoUrl}cog.svg`} />
               </NavLink>
               <NavLink
                 to={`/icons`}
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) =>
+                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
+                }
               >
-                <PageItem
-                  className="sm"
+                <IconButton
                   name="Icons"
                   icon={`${mdIcoUrl}emoticon-poop.svg`}
                 />

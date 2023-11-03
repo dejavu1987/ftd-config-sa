@@ -3,7 +3,7 @@
 }
 
 .icon {
-  @apply flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white bg-slate-800 text-center;
+  @apply flex flex-col items-center justify-center w-full border border-solid border-white rounded-lg p-2 cursor-pointer bg-gradient-to-b from-black/30 to-black/5 shadow-inner text-white bg-slate-800 text-center;
 }
 
 .active .icon {
@@ -11,10 +11,10 @@
 }
 
 .icon img {
-  @apply w-20 h-20 invert;
+  @apply w-10 h-10 xs:w-14 xs:h-14 sm:w-20 sm:h-20 invert;
 }
 
-.icon p {
+.icon span {
   @apply m-0 text-xs sm:text-sm md:text-base;
 }
 
@@ -27,20 +27,24 @@
   @apply bg-blue-300;
 }
 
-.icon-img {
-  @apply w-8;
-
-  &.lg {
-    @apply w-16;
-  }
+.tabs {
+  @apply flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400;
 }
 
-.icon.sm {
-  @apply flex-row gap-2 justify-center items-center px-4;
+.tab {
+  @apply inline-flex  py-2 px-3 text-black bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500;
+
+  button {
+    @apply flex justify-center items-center gap-2;
+  }
 
   img {
     @apply w-4 h-4;
   }
+}
+
+.tab--active {
+  @apply bg-primary-100;
 }
 
 .remove-icon {

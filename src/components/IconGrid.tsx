@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useGeneralSettings } from '../hooks/UseGeneralSettings';
 import { mdIcoUrl, pages as defaultPages, Page } from '../Data';
 import { NavLink } from 'react-router-dom';
-import { PageItem } from './PageItem';
+import { IconButton } from './IconButton';
 
 export const IconGrid = () => {
   const { settings } = useGeneralSettings();
@@ -32,7 +32,8 @@ export const IconGrid = () => {
             to={`/page/${index}/${page.name}`}
             className={({ isActive }) => (isActive ? 'active' : 'inactive')}
           >
-            <PageItem
+            <IconButton
+              className="icon"
               key={index}
               name={page.name}
               icon={`${mdIcoUrl}${page.icon}.svg`}
@@ -44,7 +45,11 @@ export const IconGrid = () => {
           to={`/page/home`}
           className={({ isActive }) => (isActive ? 'active' : 'inactive')}
         >
-          <PageItem name="Edit Homepage" icon={`${mdIcoUrl}home.svg`} />
+          <IconButton
+            className="icon"
+            name="Edit Home"
+            icon={`${mdIcoUrl}home.svg`}
+          />
         </NavLink>
       </section>
     </>

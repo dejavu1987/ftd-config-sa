@@ -69,7 +69,7 @@ export const PageContent: FC = () => {
             });
           }}
         >
-          <img src={`${mdIcoUrl}floppy.svg`} alt="Save" />
+          <img src={`${mdIcoUrl}floppy.svg`} alt="Home" />
           <p>Save</p>
         </div>
       </div>
