@@ -14,8 +14,8 @@ export default defineConfig({
       // static assets in the public folder
       includeAssets: ['**/*'],
       manifest: {
-        theme_color: '#f69435',
-        background_color: '#f69435',
+        theme_color: '#ff4500',
+        background_color: '##FF9F7A',
         display: 'standalone',
         scope: '/',
         start_url: '/',
@@ -24,22 +24,12 @@ export default defineConfig({
         name: 'FTD Configurator',
         icons: [
           {
-            src: '/icon-192x192.png',
+            src: '/android-chrome-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png',
-          },
-          {
-            src: '/icon-384x384.png',
-            sizes: '384x384',
-            type: 'image/png',
-          },
-          {
-            src: '/icon-512x512.png',
+            src: '/android-chrome-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },

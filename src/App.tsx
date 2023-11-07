@@ -1,20 +1,13 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Routes,
-  Link,
-} from 'react-router-dom';
-
-import { mdIcoUrl } from './Data';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import GeneralSettingsForm from './components/GeneralSettings';
 import WiFiSettingsForm from './components/WifiSettings';
 import { ManageIcons } from './components/ManageIcons';
 import { Home } from './components/Home';
-import { IconButton } from './components/IconButton';
 import { PageContent } from './components/PageContent';
 import { IconGrid } from './components/IconGrid';
+import { Menu } from './components/Menu';
+import Logo from './assets/icons/icon.svg';
 
 function App() {
   return (
@@ -22,49 +15,12 @@ function App() {
       <Router>
         <header className="p-5 pb-0 mb-6 bg-primary-700">
           <Link to={'/'}>
-            <h1 className="text-white text-lg sm:text-xl md:text-2xl">
+            <h1 className="text-white text-lg sm:text-xl md:text-2xl max-w-screen-sm mx-auto flex justify-center gap-4 items-center">
+              <img src={Logo} width={32} height={32} className="invert" />
               FTD Configurator
             </h1>
           </Link>
-          <nav>
-            <div className="tabs flex justify-center gap-1 flex-wrap md:flex-nowrap sm:gap-2">
-              <NavLink
-                to={`/`}
-                className={({ isActive }) =>
-                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
-                }
-              >
-                <IconButton name="Menus" icon={`${mdIcoUrl}home.svg`} />
-              </NavLink>
-              <NavLink
-                to={`/wifi`}
-                className={({ isActive }) =>
-                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
-                }
-              >
-                <IconButton name="WiFi" icon={`${mdIcoUrl}wifi.svg`} />
-              </NavLink>
-              <NavLink
-                to={`/settings`}
-                className={({ isActive }) =>
-                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
-                }
-              >
-                <IconButton name="Settings" icon={`${mdIcoUrl}cog.svg`} />
-              </NavLink>
-              <NavLink
-                to={`/icons`}
-                className={({ isActive }) =>
-                  [isActive ? 'tab--active' : 'inactive', 'tab'].join(' ')
-                }
-              >
-                <IconButton
-                  name="Icons"
-                  icon={`${mdIcoUrl}emoticon-poop.svg`}
-                />
-              </NavLink>
-            </div>
-          </nav>
+          <Menu />
         </header>
         <main className="max-w-screen-sm m-auto lg:max-w-screen-lg">
           <Routes>

@@ -46,25 +46,6 @@
 .selected-icon img {
   @apply w-20 h-20;
 }
-.tabs {
-  @apply flex flex-wrap text-sm font-medium text-center text-gray-500 border-b-4 border-primary-100 dark:border-gray-700 dark:text-gray-400;
-}
-
-.tab {
-  @apply inline-flex  py-2 px-3 text-black bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500;
-
-  button {
-    @apply flex justify-center items-center gap-2;
-  }
-
-  img {
-    @apply w-4 h-4;
-  }
-}
-
-.tab--active {
-  @apply bg-primary-100;
-}
 
 /* Styles for individual icons within the grid */
 
