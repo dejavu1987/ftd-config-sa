@@ -66,7 +66,7 @@ function App() {
             </div>
           </nav>
         </header>
-        <main>
+        <main className="max-w-screen-sm m-auto lg:max-w-screen-lg">
           <Routes>
             <Route
               path={`/`}

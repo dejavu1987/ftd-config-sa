@@ -1,5 +1,5 @@
 .icon-grid {
-  @apply grid grid-cols-3 gap-5 text-center max-w-screen-sm mx-auto p-5 rounded-md;
+  @apply grid grid-cols-3 gap-5 text-center mx-auto p-5 rounded-md max-w-screen-sm;
 }
 
 .icon {
@@ -25,6 +25,14 @@
 .icon.icon-grid--action:hover,
 .icon.active:hover {
   @apply bg-blue-300;
+}
+
+.icon.icon--sm {
+  @apply py-0;
+
+  img {
+    @apply w-8;
+  }
 }
 
 .icon-dropdown img {

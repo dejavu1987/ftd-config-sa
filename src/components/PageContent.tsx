@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Action, actions as defaultActions, mdIcoUrl } from '../Data';
 import ActionForm from './ActionForm';
 import { useGeneralSettings } from '../hooks/UseGeneralSettings';
@@ -88,7 +88,11 @@ export const PageContent: FC = () => {
           <p>Save</p>
         </div>
       </div>
-
+      <Link to="/">
+        <button className="icon w-full max-w-screen-sm icon--sm py-1 mx-auto">
+          <img src={`${mdIcoUrl}home.svg`} alt="Home" />
+        </button>
+      </Link>
       {selectedAction &&
         actionIsOpen &&
         selectedActionIndex !== null &&
