@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { ftdSaveConfigUrl } from '../Data';
 import { useForm } from 'react-hook-form';
+import { sendConfig } from './sendConfig';
 
 const WiFiSettingsForm: React.FC = () => {
   const { handleSubmit, register, reset } = useForm<Record<string, string>>();
@@ -11,26 +11,9 @@ const WiFiSettingsForm: React.FC = () => {
     }
   }, [reset]);
 
-  const sendToFTD = async (data: string) => {
-    try {
-      await fetch(ftdSaveConfigUrl, {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
-    } catch (e) {
-      console.log('err', e);
-      alert(
-        'Error saving settings! Make sure your FTD is in config mode and connected to your WiFi'
-      );
-    }
-  };
-
   const onSubmit = async (data: Record<string, string>) => {
     localStorage.setItem('ftd.wifiSettings', JSON.stringify(data));
-    await sendToFTD(new URLSearchParams(data).toString());
+    await sendConfig(new URLSearchParams(data).toString());
   };
 
   return (

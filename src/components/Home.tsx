@@ -1,14 +1,11 @@
 import { FC, useEffect, useState } from 'react';
 import { IconButton } from './IconButton';
-import {
-  mdIcoUrl,
-  pages as defaultPages,
-  Page,
-  ftdSaveConfigUrl,
-} from '../Data';
+import { mdIcoUrl, pages as defaultPages, Page } from '../Data';
 import { useGeneralSettings } from '../hooks/UseGeneralSettings';
 import IconDropdown from './IconDropdown';
 import { useIcons } from '../hooks/UseIcons';
+
+import { sendConfig } from './sendConfig';
 
 export const Home: FC = () => {
   const { settings } = useGeneralSettings();
@@ -36,17 +33,13 @@ export const Home: FC = () => {
     console.log('Save');
     const formData = new FormData();
     formData.append('save', `homescreen`);
+    formData.append('homescreenlogo5', `sys/ico/settings.bmp`);
     pages.forEach((item, index) => {
       formData.append(`homescreenlogo${index}`, `${item.icon}.bmp`);
     });
-    await fetch(ftdSaveConfigUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      // @ts-expect-error This their bug
-      body: new URLSearchParams(formData).toString(),
-    });
+    // @ts-expect-error This their bug
+    const body = new URLSearchParams(formData).toString();
+    await sendConfig(body);
   };
 
   const changeIcon = (idx: number, newIcon: string) => {

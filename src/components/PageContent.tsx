@@ -1,13 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Action,
-  actions as defaultActions,
-  ftdSaveConfigUrl,
-  mdIcoUrl,
-} from '../Data';
+import { Action, actions as defaultActions, mdIcoUrl } from '../Data';
 import ActionForm from './ActionForm';
 import { useGeneralSettings } from '../hooks/UseGeneralSettings';
+import { sendConfig } from './sendConfig';
 
 export const PageContent: FC = () => {
   const { settings } = useGeneralSettings();
@@ -54,14 +50,9 @@ export const PageContent: FC = () => {
         );
       }
     });
-    await fetch(ftdSaveConfigUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      // @ts-expect-error This their bug
-      body: new URLSearchParams(formData).toString(),
-    });
+    // @ts-expect-error This their bug
+    const body = new URLSearchParams(formData).toString();
+    await sendConfig(body);
   };
 
   if (pageIndex === null) return;

@@ -1,7 +1,7 @@
-import { ftdSaveConfigUrl } from '../Data';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useGeneralSettings } from '../hooks/UseGeneralSettings';
+import { sendConfig } from './sendConfig';
 
 const GeneralSettingsForm: React.FC = () => {
   const { handleSubmit, register, reset } = useForm();
@@ -10,26 +10,11 @@ const GeneralSettingsForm: React.FC = () => {
   useEffect(() => {
     reset(settings);
   }, [reset, settings]);
-  const sendToFTD = async (formData: string) => {
-    try {
-      await fetch(ftdSaveConfigUrl, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
-    } catch (e) {
-      console.log('err', e);
-      alert(
-        'Error saving settings! Make sure your FTD is in config mode and connected to your WiFi'
-      );
-    }
-  };
+
   const onSubmit = async (data: Record<string, string>) => {
     console.log(data);
     updateGeneralSettings(data);
-    await sendToFTD(new URLSearchParams(data).toString());
+    await sendConfig(new URLSearchParams(data).toString());
   };
   return (
     <div className="settings-form">

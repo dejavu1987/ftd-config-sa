@@ -101,7 +101,14 @@ export const actions: Action[][] = [
         ['4', 't'],
       ],
     },
-    // Add more OBS actions here
+    {
+      name: 'Stop Recording',
+      icon: `stop`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
   ],
   [
     {
@@ -123,6 +130,14 @@ export const actions: Action[][] = [
     {
       name: 'Subscribe',
       icon: `youtube-subscription`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
+    {
+      name: 'Share',
+      icon: `share`,
       actions: [
         ['5', '1'],
         ['4', 't'],
@@ -171,6 +186,14 @@ export const actions: Action[][] = [
         ['4', 't'],
       ],
     },
+    {
+      name: 'Undo',
+      icon: `undo`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
+      ],
+    },
     // Add more Premiere actions here
   ],
   [
@@ -196,6 +219,14 @@ export const actions: Action[][] = [
       actions: [
         ['5', '1'],
         ['4', 'r'],
+      ],
+    },
+    {
+      name: 'Bookmark Page',
+      icon: `bookmark`,
+      actions: [
+        ['5', '1'],
+        ['4', 't'],
       ],
     },
     {
