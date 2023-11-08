@@ -1,8 +1,12 @@
 # FreeTouchDeck Configurator (FTD Configurator)
+<img src="https://res.cloudinary.com/anilmaharjan-com-np/image/upload/v1699444768/Blog/FTD-cfg.svg" width="400"/>
+
 
 ## Overview
 
 The Standalone FreeTouchDeck Configurator / FTD-Config-SD, is a stand-alone application designed to simplify the configuration of [FreeTouchDeck (FTD)](https://github.com/DustinWatts/FreeTouchDeck) on ESP32-based boards. This repository hosts the code for the FTD Configurator app.
+
+<img src="https://res.cloudinary.com/anilmaharjan-com-np/image/upload/t_scale800/v1699444768/Blog/ftd-menu.png" width="400"/>
 
 ## Table of Contents
 
