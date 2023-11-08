@@ -26,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );
 
 if (window.location.protocol === 'https:') {
-  window.location.href =
-    'http:' + window.location.href.substring(window.location.protocol.length);
+  window.location.replace(
+    'http:' + window.location.href.substring(window.location.protocol.length)
+  );
 }
