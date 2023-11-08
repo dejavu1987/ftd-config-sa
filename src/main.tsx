@@ -24,9 +24,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </GeneralSettingsProvider>
   </React.StrictMode>
 );
-
-if (window.location.protocol === 'https:') {
-  window.location.replace(
-    'http:' + window.location.href.substring(window.location.protocol.length)
-  );
-}
