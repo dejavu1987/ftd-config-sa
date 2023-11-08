@@ -23,7 +23,15 @@ function App() {
           </a>
           <hr />
           FreeTouchDeck Webserver does not support https, to be able to save
-          your config to FreeTouchDeck, you have to use the config page on http.
+          your config to FreeTouchDeck, you have to use the config page using
+          http://. Click on the link above. On <strong>
+            Google Chrome
+          </strong>{' '}
+          and similar browsers you may have to manually enter the url.
+          <img
+            src="https://res.cloudinary.com/anilmaharjan-com-np/image/upload/v1699443947/Blog/https_to_http.gif"
+            alt="chrome help"
+          />
         </>,
         {
           autoClose: false,
