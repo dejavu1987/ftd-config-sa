@@ -22,9 +22,9 @@ The Standalone FreeTouchDeck Configurator / FTD-Config-SD, is a stand-alone appl
 
 | Feature                    | Progress |
 |---------------------------  |--------- |
-| Icon management            | ████████ 70% |
-| General and Wifi Settings  | ██████████ 80% |
-| Menu management            | ███████ 50% |
+| Icon management            | ████████████ 90% |
+| General and Wifi Settings  | █████████████ 95% |
+| Menu management            | ███████████ 85% |
 
 ## Tech Stack
 
