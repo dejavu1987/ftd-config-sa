@@ -13,7 +13,7 @@ The Standalone FreeTouchDeck Configurator / FTD-Config-SD, is a stand-alone appl
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features (Planned, the project is in progress)
+## Features
 
 - **Easy Configuration:** The FTD Configurator simplifies the process of configuring FTD settings on ESP32 boards.
 - **Decoupled from MCU Application:** With the stand-alone configurator, you no longer need to upload configuration files to the ESP32, simplifying the configuration process.
