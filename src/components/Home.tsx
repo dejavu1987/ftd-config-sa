@@ -6,6 +6,7 @@ import IconDropdown from './IconDropdown';
 import { useIcons } from '../hooks/UseIcons';
 
 import { sendConfig } from './sendConfig';
+import { Link } from 'react-router-dom';
 
 export const Home: FC = () => {
   const { settings } = useGeneralSettings();
@@ -49,32 +50,42 @@ export const Home: FC = () => {
   };
 
   return (
-    <div className="icon-grid" style={{ backgroundColor: settings.background }}>
-      {pages.map((page, index) => (
-        <div className="relative">
-          <IconButton
-            className="icon"
-            key={index}
-            name={page.name}
-            icon={`${mdIcoUrl}${page.icon}.svg`}
-            style={{ backgroundColor: settings.menubuttoncolor }}
-          />
-          <IconDropdown
-            options={icons}
-            value={page.icon}
-            className="absolute left-0 top-0 w-full hidden-selected"
-            onIconChange={(newIcon) => {
-              changeIcon(index, newIcon);
-            }}
-          />
-        </div>
-      ))}
-      <IconButton
-        className="icon"
-        onClick={saveHome}
-        name="Save"
-        icon={`${mdIcoUrl}floppy.svg`}
-      />
-    </div>
+    <>
+      <div
+        className="icon-grid"
+        style={{ backgroundColor: settings.background }}
+      >
+        {pages.map((page, index) => (
+          <div className="relative">
+            <IconButton
+              className="icon"
+              key={index}
+              name={page.name}
+              icon={`${mdIcoUrl}${page.icon}.svg`}
+              style={{ backgroundColor: settings.menubuttoncolor }}
+            />
+            <IconDropdown
+              options={icons}
+              value={page.icon}
+              className="absolute left-0 top-0 w-full hidden-selected"
+              onIconChange={(newIcon) => {
+                changeIcon(index, newIcon);
+              }}
+            />
+          </div>
+        ))}
+        <IconButton
+          className="icon"
+          onClick={saveHome}
+          name="Save"
+          icon={`${mdIcoUrl}floppy.svg`}
+        />
+      </div>
+      <Link to="/">
+        <button className="icon w-full max-w-screen-sm icon--sm py-1 mx-auto">
+          <img src={`${mdIcoUrl}home.svg`} alt="Home" />
+        </button>
+      </Link>
+    </>
   );
 };
