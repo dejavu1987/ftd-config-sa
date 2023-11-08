@@ -8,8 +8,29 @@ import { PageContent } from './components/PageContent';
 import { IconGrid } from './components/IconGrid';
 import { Menu } from './components/Menu';
 import Logo from './assets/icons/icon.svg';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 function App() {
+  useEffect(() => {
+    if (window.location.protocol === 'https:')
+      toast.warning(
+        <>
+          <strong>Warning:</strong> You are on secure <strong>(https)</strong>{' '}
+          page, you will need to open this page at{' '}
+          <a href="http://ftd.anilmaharjan.com.np">
+            http://ftd.anilmaharjan.com.np
+          </a>
+          <hr />
+          FreeTouchDeck Webserver does not support https, to be able to save
+          your config to FreeTouchDeck, you have to use the config page on http.
+        </>,
+        {
+          autoClose: false,
+          position: 'top-center',
+        }
+      );
+  }, []);
   return (
     <>
       <Router>

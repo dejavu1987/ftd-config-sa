@@ -28,4 +28,8 @@
   main {
     @apply p-5;
   }
+
+  #root {
+    --toastify-toast-width: 380px;
+  }
 }
