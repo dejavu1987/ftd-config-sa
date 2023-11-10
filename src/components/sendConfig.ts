@@ -1,7 +1,12 @@
 import { toast } from 'react-toastify';
 import { ftdSaveConfigUrl } from '../Data';
 let toastReference = null;
-export const sendConfig = async (body: string) => {
+export enum SendConfigRes {
+  SUCCESS,
+  FAIL,
+  ERROR,
+}
+export const sendConfig = async (body: string): Promise<SendConfigRes> => {
   toastReference = toast.info('Saving configuration', {
     autoClose: false, // Disable auto-closing
     closeButton: false,
@@ -24,6 +29,7 @@ export const sendConfig = async (body: string) => {
       toast.success('Success! Configuration has been saved.', {
         autoClose: 5000, // Adjust the time to display the message as needed
       });
+      return SendConfigRes.SUCCESS;
     } else {
       // Request failed, handle the error here
       toast.error(
@@ -33,15 +39,12 @@ export const sendConfig = async (body: string) => {
         }
       );
       console.error('Request failed:', response.statusText);
+      return SendConfigRes.FAIL;
     }
   } catch (error) {
     if (toastReference) {
       toast.dismiss(toastReference);
     }
-    // Handle network errors here
-    toast.error('Error! an unexpected error occured.' + JSON.stringify(error), {
-      autoClose: 5000, // Adjust the time to display the message as needed
-    });
-    console.error('Network error:', error);
+    return SendConfigRes.ERROR;
   }
 };

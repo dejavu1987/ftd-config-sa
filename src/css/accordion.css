@@ -1,0 +1,13 @@
+.accordion {
+  @apply bg-slate-50 mb-6;
+
+  .accordion-title {
+    @apply flex p-6 justify-between border-b py-4 cursor-pointer bg-slate-100 font-semibold text-slate-600;
+  }
+  .accordion-content {
+    @apply p-6 py-4;
+  }
+}
+.is-open .accordion-title {
+  @apply font-bold text-slate-900;
+}

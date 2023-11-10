@@ -1,6 +1,15 @@
+@import 'accordion.css';
 @import 'button.css';
 @import 'icon.css';
 @import 'popup.css';
 @import 'form.css';
 @import 'headings.css';
 @import 'tabs.css';
+
+.fix-browser {
+  @apply text-left;
+
+  p {
+    @apply mb-4;
+  }
+}

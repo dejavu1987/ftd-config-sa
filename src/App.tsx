@@ -8,37 +8,9 @@ import { PageContent } from './components/PageContent';
 import { IconGrid } from './components/IconGrid';
 import { Menu } from './components/Menu';
 import Logo from './assets/icons/icon.svg';
-import { useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { FixBrowser } from './components/FixBrowser';
 
 function App() {
-  useEffect(() => {
-    if (window.location.protocol === 'https:')
-      toast.warning(
-        <>
-          <strong>Warning:</strong> You are on secure <strong>(https)</strong>{' '}
-          page, you will need to open this page at{' '}
-          <a href="http://ftd.anilmaharjan.com.np">
-            http://ftd.anilmaharjan.com.np
-          </a>
-          <hr />
-          FreeTouchDeck Webserver does not support https, to be able to save
-          your config to FreeTouchDeck, you have to use the config page using
-          http://. Click on the link above. On <strong>
-            Google Chrome
-          </strong>{' '}
-          and similar browsers you may have to manually enter the url.
-          <img
-            src="https://res.cloudinary.com/anilmaharjan-com-np/image/upload/v1699443947/Blog/https_to_http.gif"
-            alt="chrome help"
-          />
-        </>,
-        {
-          autoClose: false,
-          position: 'top-center',
-        }
-      );
-  }, []);
   return (
     <>
       <Router>
@@ -102,6 +74,7 @@ function App() {
                 </section>
               }
             />
+            <Route path={`/fix-browser-issue`} element={<FixBrowser />} />
           </Routes>
         </main>
       </Router>

@@ -5,12 +5,13 @@ import { useGeneralSettings } from '../hooks/UseGeneralSettings';
 import IconDropdown from './IconDropdown';
 import { useIcons } from '../hooks/UseIcons';
 
-import { sendConfig } from './sendConfig';
-import { Link } from 'react-router-dom';
+import { SendConfigRes, sendConfig } from './sendConfig';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Home: FC = () => {
   const { settings } = useGeneralSettings();
   const [pages, setPages] = useState<Page[]>([]);
+  const navigate = useNavigate();
   const { icons } = useIcons();
 
   // Load Pages from local storage on component mount
@@ -40,7 +41,10 @@ export const Home: FC = () => {
     });
     // @ts-expect-error This their bug
     const body = new URLSearchParams(formData).toString();
-    await sendConfig(body);
+    const res = await sendConfig(body);
+    if (res === SendConfigRes.ERROR) {
+      navigate('/fix-browser-issue');
+    }
   };
 
   const changeIcon = (idx: number, newIcon: string) => {
